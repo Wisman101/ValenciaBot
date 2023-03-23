@@ -1,51 +1,25 @@
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
 using ValenciaBot.Data;
+using ValenciaBot.Startup;
 
-namespace ValenciaBot;
+var builder = WebApplication.CreateBuilder(args);
 
-public class Program
+builder.Services.AddDbContext<MainContext>(
+            o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
+        );
+
+builder.Services.RegisterServices();
+
+var app = builder.Build();
+
+using (var scope = app.Services.CreateScope())
 {
-    public static void Main(string[] args)
-    {
-        var host = CreateHostBuilder(args).Build();
-
-        // Migrate the database to the latest version
-        using (var scope = host.Services.CreateScope())
-        {
-            var services = scope.ServiceProvider;
-            var loggerFactory = services.GetRequiredService<ILoggerFactory>();
-            try
-            {
-                var dbContext = services.GetRequiredService<MainContext>();
-                dbContext.Database.Migrate();
-            }
-            catch (Exception ex)
-            {
-                var logger = loggerFactory.CreateLogger<Program>();
-                logger.LogError(ex, "An error occurred while migrating the database.");
-            }
-        }
-
-        host.Run();
-    }
-
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-                webBuilder.UseStartup<Startup>();
-            })
-            .ConfigureServices(services =>
-            {
-                // Configure database context
-                services.AddDbContext<MainContext>(options =>
-                    options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
-            });
+    var db = scope.ServiceProvider.GetRequiredService<MainContext>();
+    db.Database.Migrate();
 }
 
+app.ConfigureMiddleware();
+
+app.UseHttpsRedirection();
+
+app.Run();

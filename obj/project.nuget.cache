@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "C1pSzyX+Z0tmY67PZMdeckwMcrmSANDf37joHH93yF8aXeVZXaOE4cDFgU5dyHU06ytrjQKDRgNOUdCI7p0ftQ==",
+  "dgSpecHash": "Qcfq44duF/XWAzV18+9sgIyyXBIxocsSg96c62RK/739gngHaQ1afwL3AnE4Wn3Be/KjSr0aKOVSVls8E1dNZw==",
   "success": true,
   "projectFilePath": "/var/www/ValenciaBot/ValenciaBot.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,7 @@
     "/home/codeground/.nuget/packages/microsoft.extensions.primitives/7.0.0/microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "/home/codeground/.nuget/packages/microsoft.openapi/1.4.3/microsoft.openapi.1.4.3.nupkg.sha512",
     "/home/codeground/.nuget/packages/mono.texttemplating/2.2.1/mono.texttemplating.2.2.1.nupkg.sha512",
+    "/home/codeground/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512",
     "/home/codeground/.nuget/packages/npgsql/7.0.2/npgsql.7.0.2.nupkg.sha512",
     "/home/codeground/.nuget/packages/npgsql.entityframeworkcore.postgresql/7.0.3/npgsql.entityframeworkcore.postgresql.7.0.3.nupkg.sha512",
     "/home/codeground/.nuget/packages/swashbuckle.aspnetcore/6.4.0/swashbuckle.aspnetcore.6.4.0.nupkg.sha512",
