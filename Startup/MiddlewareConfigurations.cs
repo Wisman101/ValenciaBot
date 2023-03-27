@@ -10,6 +10,12 @@ public static class MiddlewareConfiguration
             app.UseSwaggerUI();
         }
 
+        app.UseHttpsRedirection();
+
+        app.UseAuthorization();
+
+        app.MapControllers();
+
         return app;
     }
 }

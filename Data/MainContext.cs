@@ -13,11 +13,17 @@ namespace ValenciaBot.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new ConversationMapping());
+            modelBuilder.ApplyConfiguration(new OperatingHoursMapping());
         }
 
         public DbSet<Client> Clients { get; set; }
         public DbSet<Conversation> conversations { get; set; }
         public DbSet<MessageSetup> MessageSetups { get; set; }
+        public DbSet<Clinic> Clinics { get; set; }
+        public DbSet<ClinicService> ClinicServices { get; set; }
+        public DbSet<OperatingHour> OperatingHours { get; set; }
+        public DbSet<Service> Services { get; set; }
+        public DbSet<User> Users { get; set; }
 
     }
 }

@@ -1,6 +1,3 @@
-using Microsoft.EntityFrameworkCore;
-using ValenciaBot.Data;
-
 namespace ValenciaBot.Startup;
 
 public static class DependencyInjectionSetup
@@ -9,6 +6,9 @@ public static class DependencyInjectionSetup
     {
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
+        services.AddAuthorization();
+        services.AddControllers();
+        services.AddAutoMapper(typeof(Program));
 
         return services;
     }

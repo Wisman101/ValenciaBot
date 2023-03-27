@@ -8,7 +8,7 @@ builder.Services.AddDbContext<MainContext>(
             o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
         );
 
-builder.Services.RegisterServices();
+builder.Services.RegisterServices(); 
 
 var app = builder.Build();
 
@@ -19,7 +19,5 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.ConfigureMiddleware();
-
-app.UseHttpsRedirection();
 
 app.Run();
