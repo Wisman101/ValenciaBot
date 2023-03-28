@@ -25,7 +25,7 @@ public class ServiceController : ControllerBase
         return _mapper.Map<List<ServiceDto>>(await _context.Services.ToListAsync());
     }
 
-    // GET: api/User/5
+    // GET: api/Service/5
     [HttpGet("{id}")]
     public async Task<ActionResult<ServiceDto>> GetService(int id)
     {
@@ -39,11 +39,13 @@ public class ServiceController : ControllerBase
         return _mapper.Map<ServiceDto>(service);
     }
    
-    // PUT: api/User/5
+    // PUT: api/Service/5
     [HttpPut("{id}")]
     public async Task<IActionResult> PutService(int id, ServiceDto serviceDto)
     {
-        var service = _mapper.Map<Service>(serviceDto);
+        Service service = new ();
+        service.Code = serviceDto.Code;
+        service.Name = serviceDto.Name;
         if (id != serviceDto.Id)
         {
             return BadRequest();
@@ -70,7 +72,7 @@ public class ServiceController : ControllerBase
         return NoContent();
     }
 
-    // POST: api/User
+    // POST: api/Service
     [HttpPost]
     public async Task<ActionResult<ServiceDto>> PostService(ServiceDto serviceDto)
     {
@@ -81,7 +83,7 @@ public class ServiceController : ControllerBase
         return CreatedAtAction("GetService", new { id = serviceDto.Id }, serviceDto);
     }
 
-    // DELETE: api/User/5
+    // DELETE: api/Service/5
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteService(int id)
     {

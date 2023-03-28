@@ -5,7 +5,7 @@ namespace ValenciaBot.Data.Abstract;
 public class BaseEntity
 {
     public int Id { get; set; }
-    public Guid entityGuid { get; set; } = new Guid();
+    public Guid entityGuid { get; set; } = Guid.NewGuid();
     public DateTime Created { get; set; } = DateTime.UtcNow;
     public string? CreatedBy { get; set; }
     public bool isDeleted { get; set; }

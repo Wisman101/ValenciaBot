@@ -9,5 +9,17 @@ public class MappingProfile : Profile
     {
         CreateMap<Service, ServiceDto>();
         CreateMap<ServiceDto, Service>();
+
+        CreateMap<Clinic, ClinicDto>();
+        CreateMap<ClinicDto, Clinic>();
+
+        CreateMap<ClinicOperatingHour, OperatingHourDto>();
+        CreateMap<OperatingHourDto, ClinicOperatingHour>();
+
+        CreateMap<ServiceOperatingHour, OperatingHourDto>();
+        CreateMap<OperatingHourDto, ServiceOperatingHour>();
+
+        CreateMap<ClinicService, ClinicServiceDto>();
+        CreateMap<ClinicServiceDto, ClinicService>();
     }
 }
