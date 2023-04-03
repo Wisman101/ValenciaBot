@@ -22,7 +22,7 @@ public class ServiceController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<ServiceDto>>> GetServices()
     {
-        return _mapper.Map<List<ServiceDto>>(await _context.Services.ToListAsync());
+        return _mapper.Map<List<ServiceDto>>(await _context.Services.Where(service => !service.isDeleted).ToListAsync());
     }
 
     // GET: api/Service/5
@@ -43,13 +43,11 @@ public class ServiceController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutService(int id, ServiceDto serviceDto)
     {
-        Service service = new ();
+        Service service = await _context.Services.FindAsync(id);
+        if(service is null) return NotFound();
+        
         service.Code = serviceDto.Code;
         service.Name = serviceDto.Name;
-        if (id != serviceDto.Id)
-        {
-            return BadRequest();
-        }
 
         _context.Entry(service).State = EntityState.Modified;
 
@@ -69,7 +67,7 @@ public class ServiceController : ControllerBase
             }
         }
 
-        return NoContent();
+        return Ok();
     }
 
     // POST: api/Service
@@ -97,7 +95,7 @@ public class ServiceController : ControllerBase
         _context.Services.Update(Service);
         await _context.SaveChangesAsync();
 
-        return NoContent();
+        return Ok();
     }
 
     private bool ServiceExists(int id)
