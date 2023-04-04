@@ -1,6 +1,7 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json.Linq;
 using ValenciaBot.Data;
 using ValenciaBot.Data.Dto;
 using ValenciaBot.Data.Entities;
@@ -20,36 +21,54 @@ public class ClinicServiceController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ClinicServiceDto>>> GetClinicServiceServices()
+    public async Task<ActionResult<List<ClinicServiceDto>>> GetClinicService()
     {
-        return _mapper.Map<List<ClinicServiceDto>>(await _context.ClinicServices.ToListAsync());
+        var clinicService = await _context.ClinicServices
+                .Include(service => service.DaysOffered)
+                .Include(service => service.Clinic)
+                .Include(service => service.Service)
+                .Where(service => !service.isDeleted)
+                .ToListAsync();
+        return _mapper.Map<List<ClinicServiceDto>>(clinicService);
     }
 
     // GET: api/ClinicService/5
     [HttpGet("{id}")]
-    public async Task<ActionResult<ClinicServiceDto>> GetClinicServiceService(int id)
+    public async Task<ActionResult<ClinicServiceDto>> GetClinicService(int id)
     {
-        var ClinicService = await _context.ClinicServices.FindAsync(id);
+        var clinicService = await _context.ClinicServices
+                .Include(service => service.DaysOffered)
+                .Include(service => service.Clinic)
+                .Include(service => service.Service)
+                .FirstOrDefaultAsync(service => service.Id == id && !service.isDeleted);
 
-        if (ClinicService == null)
-        {
-            return NotFound();
-        }
-
-        return _mapper.Map<ClinicServiceDto>(ClinicService);
+        if (clinicService == null) return NotFound();
+        
+        return _mapper.Map<ClinicServiceDto>(clinicService);
     }
    
     // PUT: api/ClinicServiceService/5
     [HttpPut("{id}")]
-    public async Task<IActionResult> PutClinicServiceService(int id, ClinicServiceDto ClinicServiceDto)
+    public async Task<IActionResult> PutClinicService(int id, ClinicServiceDtoPost ClinicServiceDto)
     {
-        var ClinicService = _mapper.Map<ClinicService>(ClinicServiceDto);
-        if (id != ClinicServiceDto.Id)
-        {
-            return BadRequest();
-        }
+        ClinicService clinicService = await _context.ClinicServices.FindAsync(id);
+        if(clinicService is null) return NotFound("Clinic Service Not Found");
 
-        _context.Entry(ClinicService).State = EntityState.Modified;
+        Clinic clinic = await _context.Clinics
+            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.isDeleted);
+        if(clinic is null) return NotFound("Clinic Not Found");
+
+        Service service = await _context.Services
+            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.isDeleted);
+        if(service is null) return NotFound("Service Not Found");
+
+        clinicService.Clinic = clinic;
+        clinicService.Service = service;
+        clinicService.IsAvailable = ClinicServiceDto.IsAvailable;
+        clinicService.IsSpecial = ClinicServiceDto.IsSpecial;
+        clinicService.DaysOffered = _mapper.Map<List<ServiceOperatingHour>>(ClinicServiceDto.DaysOffered);
+
+        _context.Entry(clinicService).State = EntityState.Modified;
 
         try
         {
@@ -72,10 +91,36 @@ public class ClinicServiceController : ControllerBase
 
     // POST: api/ClinicService
     [HttpPost]
-    public async Task<ActionResult<ClinicServiceDto>> PostClinicService(ClinicServiceDto ClinicServiceDto)
+    public async Task<ActionResult<ClinicServiceDto>> PostClinicService(ClinicServiceDtoPost ClinicServiceDto)
     {
-        var ClinicService = _mapper.Map<ClinicService>(ClinicServiceDto);
-        _context.ClinicServices.Add(ClinicService);
+        Clinic clinic = await _context.Clinics
+            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.isDeleted);
+        if(clinic is null) return NotFound("Clinic Not Found");
+
+        Service service = await _context.Services
+            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.isDeleted);
+        if(service is null) return NotFound("Service Not Found");
+
+        ClinicService clinicService = new ClinicService();
+
+        clinicService.Clinic = clinic;
+        clinicService.Service = service;
+        clinicService.IsAvailable = ClinicServiceDto.IsAvailable;
+        clinicService.IsSpecial = ClinicServiceDto.IsSpecial;
+
+        clinicService.DaysOffered = new();
+
+        foreach(var OperatingHour in ClinicServiceDto.DaysOffered)
+        {
+            clinicService.DaysOffered.Add(new ServiceOperatingHour
+            {
+                Days = JToken.FromObject(OperatingHour.Days),
+                Start = OperatingHour.Start,
+                End = OperatingHour.End
+            });
+        }
+
+        await _context.ClinicServices.AddAsync(clinicService);
         await _context.SaveChangesAsync();
 
         return CreatedAtAction("GetClinicService", new { id = ClinicServiceDto.Id }, ClinicServiceDto);

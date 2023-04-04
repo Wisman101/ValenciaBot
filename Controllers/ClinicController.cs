@@ -38,11 +38,8 @@ public class ClinicController : ControllerBase
             .Include(clinic => clinic.OperatingHour)
             .FirstOrDefaultAsync(clinic => !clinic.isDeleted && clinic.Id == id);
 
-        if (Clinic == null)
-        {
-            return NotFound();
-        }
-
+        if (Clinic == null) return NotFound("Clinic Not Found");
+        
         return _mapper.Map<ClinicDto>(Clinic);
     }
    
@@ -50,13 +47,22 @@ public class ClinicController : ControllerBase
     [HttpPut("{id}")]
     public async Task<IActionResult> PutClinic(int id, ClinicDto ClinicDto)
     {
-        var Clinic = _mapper.Map<Clinic>(ClinicDto);
-        if (id != ClinicDto.Id)
-        {
-            return BadRequest();
-        }
+        Clinic clinic = await _context.Clinics.FindAsync(id);
+        if(clinic is null) return NotFound("Clinic Not Found");
 
-        _context.Entry(Clinic).State = EntityState.Modified;
+        clinic.Name = ClinicDto.Name;
+        clinic.Code = ClinicDto.Code;
+        clinic.County = ClinicDto.County;
+        clinic.SubCounty = ClinicDto.SubCounty;
+        clinic.Ward = ClinicDto.Ward;
+        clinic.Lattitude = ClinicDto.Lattitude;
+        clinic.Longitude = ClinicDto.Longitude;
+        clinic.Tel = ClinicDto.Tel;
+        clinic.Email = ClinicDto.Email;
+        clinic.isActive = ClinicDto.isActive;
+        clinic.OperatingHour = _mapper.Map<List<ClinicOperatingHour>>(ClinicDto.OperatingHour);
+
+        _context.Entry(clinic).State = EntityState.Modified;
 
         try
         {
