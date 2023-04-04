@@ -23,7 +23,8 @@ public class ClinicController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<ClinicDto>>> GetClinics()
     {
-        return _mapper.Map<List<ClinicDto>>(await _context.Clinics.ToListAsync());
+        var clinics = await _context.Clinics.Where(clinic => !clinic.isDeleted).ToListAsync();
+        return _mapper.Map<List<ClinicDto>>(await _context.Clinics.Where(clinic => !clinic.isDeleted).ToListAsync());
     }
 
     // GET: api/Clinic/5
@@ -91,7 +92,7 @@ public class ClinicController : ControllerBase
         {
             Clinic.OperatingHour.Add(new ClinicOperatingHour
             {
-                Days = JArray.FromObject(OperatingHour.Days),
+                Days = JToken.FromObject(OperatingHour.Days),
                 Start = OperatingHour.Start,
                 End = OperatingHour.End
             });

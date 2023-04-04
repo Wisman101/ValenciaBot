@@ -13,5 +13,6 @@ public class ClinicDto
     public string Longitude { get; set; }
     public string Tel { get; set; }
     public string Email { get; set; }
+    public bool isActive { get; set; }
     public List<OperatingHourDto> OperatingHour { get; set; }
 }

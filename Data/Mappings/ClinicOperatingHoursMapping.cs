@@ -12,15 +12,11 @@ namespace ValenciaBot.Data.Mappings
         public void Configure(EntityTypeBuilder<ClinicOperatingHour> builder)
         {
             builder.HasKey(x => x.Id);
-            builder.Property(e => e.Days).HasConversion(new JTokenValueConverter());
+            builder.Property(e => e.Days).HasConversion(
+                v => JsonConvert.SerializeObject(v,
+                    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                v => JsonConvert.DeserializeObject<JToken>(v,
+                    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
-    }
-
-    public class JTokenValueConverter : ValueConverter<JArray, string>
-    {
-        public JTokenValueConverter() : base(
-            jToken => jToken.ToString(),
-            json => JArray.Parse(json)
-        ) { }
     }
 }

@@ -7,7 +7,7 @@ public static class DependencyInjectionSetup
         services.AddEndpointsApiExplorer();
         services.AddSwaggerGen();
         services.AddAuthorization();
-        services.AddControllers();
+        services.AddControllers().AddNewtonsoftJson();
         services.AddAutoMapper(typeof(Program));
 
         return services;
