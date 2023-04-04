@@ -23,15 +23,20 @@ public class ClinicController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<ClinicDto>>> GetClinics()
     {
-        var clinics = await _context.Clinics.Where(clinic => !clinic.isDeleted).ToListAsync();
-        return _mapper.Map<List<ClinicDto>>(await _context.Clinics.Where(clinic => !clinic.isDeleted).ToListAsync());
+        var clinics = await _context.Clinics
+            .Include(clinic => clinic.OperatingHour)
+            .Where(clinic => !clinic.isDeleted)
+            .ToListAsync();
+        return _mapper.Map<List<ClinicDto>>(clinics);
     }
 
     // GET: api/Clinic/5
     [HttpGet("{id}")]
     public async Task<ActionResult<ClinicDto>> GetClinic(int id)
     {
-        var Clinic = await _context.Clinics.FindAsync(id);
+        var Clinic = await _context.Clinics
+            .Include(clinic => clinic.OperatingHour)
+            .FirstOrDefaultAsync(clinic => !clinic.isDeleted && clinic.Id == id);
 
         if (Clinic == null)
         {
