@@ -24,5 +24,9 @@ public class MappingProfile : Profile
 
         CreateMap<ClinicService, ClinicServiceDtoPost>();
         CreateMap<ClinicServiceDtoPost, ClinicService>();
+
+        CreateMap<MessageSetup, MessageSetupDto>()
+            .ForMember(messageDto => messageDto.ParentId, message => message.MapFrom(m => m.Parent.Id));
+        CreateMap<MessageSetupDto, MessageSetup>();
     }
 }
