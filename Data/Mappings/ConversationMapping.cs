@@ -16,6 +16,11 @@ namespace ValenciaBot.Data.Mappings
                     new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
                 v => JsonConvert.DeserializeObject<JToken>(v,
                     new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
+            builder.Property(e => e.log).HasConversion(
+                v => JsonConvert.SerializeObject(v,
+                    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }),
+                v => JsonConvert.DeserializeObject<JToken>(v,
+                    new JsonSerializerSettings { NullValueHandling = NullValueHandling.Ignore }));
         }
     }
 }

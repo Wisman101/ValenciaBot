@@ -2,6 +2,9 @@ namespace ValenciaBot.Data.Enum;
 
 public enum Key
 {
-    NearestClinic = 1,
+    Intro = 1,
+    Begin,
+    NearestClinic,
     ClinicByCounty,
+    Timeout,
 }
