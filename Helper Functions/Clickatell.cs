@@ -1,5 +1,6 @@
 using System.Net;
 using System.Net.Http.Headers;
+using dotenv.net;
 using Newtonsoft.Json;
 
 namespace ValenciaBot.HelperFunctions.Clickatell;
@@ -7,12 +8,17 @@ namespace ValenciaBot.HelperFunctions.Clickatell;
 class Api
 {
     //This function is in charge of converting the data into a json array and sending it to the rest sending controller.
-    public static Task<HttpResponseMessage> SendSMS(string Token, Dictionary<string, string> Params)
+    public static Task<HttpResponseMessage> SendMessage(string to, string message)
     {
-       // Params["to"] = CreateRecipientList(Params["to"]);
+        DotEnv.Load();
+        var token = Environment.GetEnvironmentVariable("Clickatell_Api_Key");
+        Dictionary<string, string> Params = new Dictionary<string, string>();
+        Params.Add("channel", "whatsapp");
+        Params.Add("to", to);
+        Params.Add("content", message);
         string JsonArray = JsonConvert.SerializeObject(Params, Formatting.None);
         JsonArray = $"{{\"messages\": [{JsonArray.Replace("\\\"", "\"").Replace("\"[", "[").Replace("]\"", "]")}]}}";
-        return Rest.Post(Token, JsonArray);
+        return Rest.Post(token, JsonArray);
     }
 
     //This function converts the recipients list into an array string so it can be parsed correctly by the json array.

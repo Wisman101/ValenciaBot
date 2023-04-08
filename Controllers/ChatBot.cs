@@ -39,7 +39,9 @@ public class ChatBotController : ControllerBase
             await _context.Clients.AddAsync(client);
         }
 
-        var conversation = await _context.conversations.OrderBy(convo => convo.Created).LastOrDefaultAsync(convo => convo.client == client);
+        var conversation = await _context.conversations.Include(convo => convo.MessageSetup)
+            .OrderBy(convo => convo.Created)
+            .LastOrDefaultAsync(convo => convo.client == client);
         var response = "";
         if(conversation is null || conversation.Created < DateTime.UtcNow.AddDays(-1))
         {
@@ -52,22 +54,34 @@ public class ChatBotController : ControllerBase
         else if(conversation.Created < DateTime.UtcNow.AddMinutes(-10))
         {
             var message = _context.MessageSetups.FirstOrDefault(message => message.key == Key.Begin);
-            response = "Welcome Back!/n" + message.Response;
+            response = "*Welcome Back!*\n\n" + message.Response;
             await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
+        }
+        else if(requestContent["content"].ToString() == "00")
+        {
+            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.key == Key.Begin && !message.isDeleted);
+            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, message.Response));
         }
         else
         {
-            // if(!conversation.MessageSetup.isDynamic)
-            // {
-            //     var message = _context
-            // }
+            MessageSetup messageSetup = conversation.MessageSetup;
+            
+            if(!messageSetup.isDynamic)
+            {
+                var message = await _context.MessageSetups
+                    .FirstOrDefaultAsync(setup => setup.Parent == messageSetup 
+                        && setup.Input == requestContent["content"].ToString());
+                response = $"{message.Response}\n\n00: Home";
+                if(!message.isDynamic)
+                {
+                    await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
+                }
+            }
         }
         await _context.SaveChangesAsync(cancellationToken);
-        Console.Write(request);
 
         return NoContent();
     }
-
     public static Conversation CreateConversation(Client client, JToken data, MessageSetup message, string response)
     {
         var convo = new Conversation
@@ -80,23 +94,11 @@ public class ChatBotController : ControllerBase
             CreatedBy = "System"
         };
         
-        var httpResponse = SendMessage(client.PhoneNumber,message.Response).Result;
+        var httpResponse = Api.SendMessage(client.PhoneNumber,response).Result;
         convo.sent = httpResponse.IsSuccessStatusCode;
         convo.log = JToken.FromObject(httpResponse);
 
         return convo;
-    }
-
-    public static Task<HttpResponseMessage> SendMessage(string to, string message)
-    {
-        DotEnv.Load();
-        Dictionary<string, string> Params = new Dictionary<string, string>();
-        Params.Add("channel", "whatsapp");
-        Params.Add("to", to);
-        Params.Add("content", message);
-        
-        var response = Api.SendSMS(Environment.GetEnvironmentVariable("Clickatell_Api_Key"), Params);
-        return response;
     }
 
 }
