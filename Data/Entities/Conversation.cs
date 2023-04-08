@@ -11,5 +11,5 @@ public class Conversation : BaseEntity
     public string Response { get; set; }
     public JToken MetaData { get; set; }
     public bool sent { get; set; }
-    public JToken log { get; set; }
+    public JToken? log { get; set; }
 }
