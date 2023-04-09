@@ -8,6 +8,7 @@ using ValenciaBot.HelperFunctions.Clickatell;
 using dotenv.net;
 using ValenciaBot.Data.Enum;
 using CSharpFunctionalExtensions;
+using ValenciaBot.HelperFunctions.ChatFunctions;
 
 namespace ValenciaBot.Controllers.Clinics;
 
@@ -26,7 +27,10 @@ public class ChatBotController : ControllerBase
     [HttpPost("receive_message")]
     public async Task<IActionResult> ReceiveMessage([FromBody] JObject request, CancellationToken cancellationToken)
     {
-        var requestContent = request["event"]["moText"][0];
+        var contentType = request["event"]["moText"] == null ? request["event"]["moLocation"] : request["event"]["moText"];
+        if(contentType == null) return BadRequest();
+
+        var requestContent = contentType[0];
         var PhoneNumber = requestContent["from"].ToString();
         var profileName =  requestContent["whatsapp"]["profileName"].ToString();
         var client = await _context.Clients.FirstOrDefaultAsync(client => client.PhoneNumber == PhoneNumber);
@@ -42,39 +46,67 @@ public class ChatBotController : ControllerBase
         var conversation = await _context.conversations.Include(convo => convo.MessageSetup)
             .OrderBy(convo => convo.Created)
             .LastOrDefaultAsync(convo => convo.client == client);
+    
+        if(request["event"]["moText"] == null)
+        {
+            if(conversation is null || conversation.MessageSetup.Key != Key.CurrentLocation) 
+            {
+                // TODO: code to return message invalid input.
+                return BadRequest();
+            }
+        }
+        else
+        {
+            if(requestContent["content"].ToString() == "00")
+            {
+                var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
+                await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, message.Response));
+                return NoContent();
+            }
+        }
+       
+        
         var response = "";
         if(conversation is null || conversation.Created < DateTime.UtcNow.AddDays(-1))
         {
-            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.key == Key.Intro && !message.isDeleted);
-            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, $"Hey {client.Name}, {message.Response}"));
+            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
+            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, $"Hey {client.Name},\n {message.Response}"));
 
-            var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.key == Key.Begin && !message.isDeleted);
+            var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
             await _context.conversations.AddAsync(CreateConversation(client, requestContent, message2, message2.Response));
         }
         else if(conversation.Created < DateTime.UtcNow.AddMinutes(-10))
         {
-            var message = _context.MessageSetups.FirstOrDefault(message => message.key == Key.Begin);
+            var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
             response = "*Welcome Back!*\n\n" + message.Response;
             await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
-        }
-        else if(requestContent["content"].ToString() == "00")
-        {
-            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.key == Key.Begin && !message.isDeleted);
-            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, message.Response));
         }
         else
         {
             MessageSetup messageSetup = conversation.MessageSetup;
             
-            if(!messageSetup.isDynamic)
+            if(!messageSetup.IsDynamic)
             {
                 var message = await _context.MessageSetups
                     .FirstOrDefaultAsync(setup => setup.Parent == messageSetup 
                         && setup.Input == requestContent["content"].ToString());
                 response = $"{message.Response}\n\n00: Home";
-                if(!message.isDynamic)
+                if(!message.IsDynamic)
                 {
                     await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
+                }
+            }
+            else
+            {
+                switch(messageSetup.Key)
+                {
+                    case Key.CurrentLocation:
+                        var latitude = requestContent["latitute"].ToString();
+                        var longitude = requestContent["longitude"].ToString();
+                        ChatFunctions.NearestClinics(latitude, longitude);
+                        break;
+                    default:
+                        return BadRequest();
                 }
             }
         }

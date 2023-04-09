@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ValenciaBot.Data;
@@ -11,9 +12,11 @@ using ValenciaBot.Data;
 namespace ValenciaBot.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class MainContextModelSnapshot : ModelSnapshot
+    [Migration("20230409082158_UpdateMessageSetupModel09042023")]
+    partial class UpdateMessageSetupModel09042023
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -63,7 +66,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clients", (string)null);
+                    b.ToTable("Clients");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.Clinic", b =>
@@ -133,7 +136,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Clinics", (string)null);
+                    b.ToTable("Clinics");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.ClinicOperatingHour", b =>
@@ -182,7 +185,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasIndex("clinicId");
 
-                    b.ToTable("ClinicOperatingHours", (string)null);
+                    b.ToTable("ClinicOperatingHours");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.ClinicService", b =>
@@ -232,7 +235,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ClinicServices", (string)null);
+                    b.ToTable("ClinicServices");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.Conversation", b =>
@@ -294,7 +297,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasIndex("clientId");
 
-                    b.ToTable("conversations", (string)null);
+                    b.ToTable("conversations");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.MessageSetup", b =>
@@ -347,7 +350,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasIndex("ParentId");
 
-                    b.ToTable("MessageSetups", (string)null);
+                    b.ToTable("MessageSetups");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.Service", b =>
@@ -389,7 +392,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Services", (string)null);
+                    b.ToTable("Services");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.ServiceOperatingHour", b =>
@@ -438,7 +441,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasIndex("ServiceId");
 
-                    b.ToTable("ServiceOperatingHours", (string)null);
+                    b.ToTable("ServiceOperatingHours");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.User", b =>
@@ -503,7 +506,7 @@ namespace ValenciaBot.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users", (string)null);
+                    b.ToTable("Users");
                 });
 
             modelBuilder.Entity("ValenciaBot.Data.Entities.ClinicOperatingHour", b =>

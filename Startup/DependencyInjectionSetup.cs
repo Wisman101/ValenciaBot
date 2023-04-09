@@ -1,3 +1,5 @@
+using ValenciaBot.Data.SeedData;
+
 namespace ValenciaBot.Startup;
 
 public static class DependencyInjectionSetup

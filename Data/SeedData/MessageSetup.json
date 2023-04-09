@@ -1,0 +1,63 @@
+[
+    {
+        "Id": 1,
+        "IsActive": true,
+        "Input": "",
+        "Response":"I am Valentia, Equity Afia's online Care Assistant, Your Listening Caring Health Partner",
+        "isDynamic": false,
+        "key":1,
+        "createdBy": "System"
+    },
+    {
+        "id": 2,
+        "IsActive": true,
+        "Input": "",
+        "Response":"How would you Like me to Help you, Select an Option Below:\n1. Search for an Equity Afia Clinic\n2. Book an Appointment\n3. Give Feedback",
+        "isDynamic": false,
+        "key":2,
+        "createdBy": "System",
+        "Children": [
+            {
+                "Id": 3,
+                "IsActive": true,
+                "Input": "1",
+                "Response":"How would you like to do your search:\n1. Search for the nearest Clinic around you?\n2. Search by county?\n3. Search by Clinic Code/Name?",
+                "isDynamic": false,
+                "createdBy": "System",
+                "Children": [
+                    {
+                        "Id": 4,
+                        "IsActive": true,
+                        "Input": "1",
+                        "Response":"Kindly share Your Current Location so as to get a list of clinics near you.",
+                        "createdBy": "System",
+                        "isDynamic": true,
+                        "Key": 4,
+                        "Children": [
+                            {
+                                "Id": 5,
+                                "isActive": true,
+                                "Input": "current location",
+                                "Response":"Clinics Near the current location",
+                                "createdBy": "System",
+                                "isDynamic": true,
+                                "Key": 5,
+                                "Children": [
+                                    {
+                                        "Id": 6,
+                                        "isActive": true,
+                                        "Input": "Clinic code",
+                                        "Response":"Clinics Details",
+                                        "isDynamic": true,
+                                        "Key": 6,
+                                        "createdBy": "System"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

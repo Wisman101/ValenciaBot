@@ -22,7 +22,7 @@ public class MessageSetupController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<MessageSetupDto>>> GetMessageSetups()
     {
-        return _mapper.Map<List<MessageSetupDto>>(await _context.MessageSetups.Where(MessageSetup => !MessageSetup.isDeleted).ToListAsync());
+        return _mapper.Map<List<MessageSetupDto>>(await _context.MessageSetups.Where(MessageSetup => !MessageSetup.IsDeleted).ToListAsync());
     }
 
     // GET: api/MessageSetup/5
@@ -48,9 +48,9 @@ public class MessageSetupController : ControllerBase
         
         MessageSetup.Input = MessageSetupDto.Input;
         MessageSetup.Response = MessageSetupDto.Response;
-        MessageSetup.isDynamic = MessageSetupDto.isDynamic;
-        MessageSetup.isActive = MessageSetupDto.isActive;
-        MessageSetup.key = MessageSetupDto.key;
+        MessageSetup.IsDynamic = MessageSetupDto.IsDynamic;
+        MessageSetup.IsActive = MessageSetupDto.IsActive;
+        MessageSetup.Key = MessageSetupDto.Key;
         MessageSetup.Parent = _context.MessageSetups.Find(MessageSetupDto.ParentId);
 
         _context.Entry(MessageSetup).State = EntityState.Modified;
@@ -81,9 +81,9 @@ public class MessageSetupController : ControllerBase
         var MessageSetup = new MessageSetup();
         MessageSetup.Input = MessageSetupDto.Input;
         MessageSetup.Response = MessageSetupDto.Response;
-        MessageSetup.isDynamic = MessageSetupDto.isDynamic;
-        MessageSetup.isActive = MessageSetupDto.isActive;
-        MessageSetup.key = MessageSetupDto.key;
+        MessageSetup.IsDynamic = MessageSetupDto.IsDynamic;
+        MessageSetup.IsActive = MessageSetupDto.IsActive;
+        MessageSetup.Key = MessageSetupDto.Key;
         MessageSetup.Parent = _context.MessageSetups.Find(MessageSetupDto.ParentId);
         _context.MessageSetups.Add(MessageSetup);
         await _context.SaveChangesAsync();
@@ -101,7 +101,7 @@ public class MessageSetupController : ControllerBase
             return NotFound();
         }
 
-        MessageSetup.isDeleted = true;
+        MessageSetup.IsDeleted = true;
         _context.MessageSetups.Update(MessageSetup);
         await _context.SaveChangesAsync();
 

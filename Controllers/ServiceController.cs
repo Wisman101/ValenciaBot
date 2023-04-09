@@ -22,7 +22,7 @@ public class ServiceController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<List<ServiceDto>>> GetServices()
     {
-        return _mapper.Map<List<ServiceDto>>(await _context.Services.Where(service => !service.isDeleted).ToListAsync());
+        return _mapper.Map<List<ServiceDto>>(await _context.Services.Where(service => !service.IsDeleted).ToListAsync());
     }
 
     // GET: api/Service/5
@@ -91,7 +91,7 @@ public class ServiceController : ControllerBase
             return NotFound();
         }
 
-        Service.isDeleted = true;
+        Service.IsDeleted = true;
         _context.Services.Update(Service);
         await _context.SaveChangesAsync();
 

@@ -5,7 +5,7 @@ public enum Key
     Intro = 1,
     Begin,
     Services,
+    CurrentLocation,
     NearestClinic,
-    ClinicByCounty,
-    Timeout,
+    ClinicDetails,
 }

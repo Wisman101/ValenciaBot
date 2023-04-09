@@ -27,7 +27,7 @@ public class ClinicServiceController : ControllerBase
                 .Include(service => service.DaysOffered)
                 .Include(service => service.Clinic)
                 .Include(service => service.Service)
-                .Where(service => !service.isDeleted)
+                .Where(service => !service.IsDeleted)
                 .ToListAsync();
         return _mapper.Map<List<ClinicServiceDto>>(clinicService);
     }
@@ -40,7 +40,7 @@ public class ClinicServiceController : ControllerBase
                 .Include(service => service.DaysOffered)
                 .Include(service => service.Clinic)
                 .Include(service => service.Service)
-                .FirstOrDefaultAsync(service => service.Id == id && !service.isDeleted);
+                .FirstOrDefaultAsync(service => service.Id == id && !service.IsDeleted);
 
         if (clinicService == null) return NotFound();
         
@@ -55,11 +55,11 @@ public class ClinicServiceController : ControllerBase
         if(clinicService is null) return NotFound("Clinic Service Not Found");
 
         Clinic clinic = await _context.Clinics
-            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.isDeleted);
+            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.IsDeleted);
         if(clinic is null) return NotFound("Clinic Not Found");
 
         Service service = await _context.Services
-            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.isDeleted);
+            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.IsDeleted);
         if(service is null) return NotFound("Service Not Found");
 
         clinicService.Clinic = clinic;
@@ -94,11 +94,11 @@ public class ClinicServiceController : ControllerBase
     public async Task<ActionResult<ClinicServiceDto>> PostClinicService(ClinicServiceDtoPost ClinicServiceDto)
     {
         Clinic clinic = await _context.Clinics
-            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.isDeleted);
+            .FirstOrDefaultAsync(clinic => clinic.Id == ClinicServiceDto.ClinicId && !clinic.IsDeleted);
         if(clinic is null) return NotFound("Clinic Not Found");
 
         Service service = await _context.Services
-            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.isDeleted);
+            .FirstOrDefaultAsync(service => service.Id == ClinicServiceDto.ServiceId && !service.IsDeleted);
         if(service is null) return NotFound("Service Not Found");
 
         ClinicService clinicService = new ClinicService();
@@ -136,7 +136,7 @@ public class ClinicServiceController : ControllerBase
             return NotFound();
         }
 
-        ClinicService.isDeleted = true;
+        ClinicService.IsDeleted = true;
         _context.ClinicServices.Update(ClinicService);
         await _context.SaveChangesAsync();
 

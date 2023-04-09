@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using ValenciaBot.Data;
+using ValenciaBot.Data.SeedData;
 using ValenciaBot.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,7 @@ using (var scope = app.Services.CreateScope())
 {
     var db = scope.ServiceProvider.GetRequiredService<MainContext>();
     db.Database.Migrate();
+    await SeedData.Execute(db, app.Services.GetRequiredService<IWebHostEnvironment>());
 }
 
 app.ConfigureMiddleware();

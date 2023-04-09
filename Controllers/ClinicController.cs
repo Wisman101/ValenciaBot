@@ -25,7 +25,7 @@ public class ClinicController : ControllerBase
     {
         var clinics = await _context.Clinics
             .Include(clinic => clinic.OperatingHour)
-            .Where(clinic => !clinic.isDeleted)
+            .Where(clinic => !clinic.IsDeleted)
             .ToListAsync();
         return _mapper.Map<List<ClinicDto>>(clinics);
     }
@@ -36,7 +36,7 @@ public class ClinicController : ControllerBase
     {
         var Clinic = await _context.Clinics
             .Include(clinic => clinic.OperatingHour)
-            .FirstOrDefaultAsync(clinic => !clinic.isDeleted && clinic.Id == id);
+            .FirstOrDefaultAsync(clinic => !clinic.IsDeleted && clinic.Id == id);
 
         if (Clinic == null) return NotFound("Clinic Not Found");
         
@@ -59,7 +59,7 @@ public class ClinicController : ControllerBase
         clinic.Longitude = ClinicDto.Longitude;
         clinic.Tel = ClinicDto.Tel;
         clinic.Email = ClinicDto.Email;
-        clinic.isActive = ClinicDto.isActive;
+        clinic.IsActive = ClinicDto.IsActive;
         clinic.OperatingHour = _mapper.Map<List<ClinicOperatingHour>>(ClinicDto.OperatingHour);
 
         _context.Entry(clinic).State = EntityState.Modified;
@@ -124,7 +124,7 @@ public class ClinicController : ControllerBase
             return NotFound();
         }
 
-        Clinic.isDeleted = true;
+        Clinic.IsDeleted = true;
         _context.Clinics.Update(Clinic);
         await _context.SaveChangesAsync();
 
