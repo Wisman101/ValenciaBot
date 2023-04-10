@@ -11,11 +11,11 @@ public static class DependencyInjectionSetup
         services.AddAuthorization();
         services.AddControllers().AddNewtonsoftJson();
         services.AddAutoMapper(typeof(Program));
-        services.AddCors(options =>
-        {
-            options.AddPolicy("AllowAllOrigins",
-            builder => builder.AllowAnyOrigin());
-        });
+         services.AddCors(c => c.AddPolicy("ApiCorsPolicy", policy => {
+                policy.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader();
+            }));
 
         return services;
     }
