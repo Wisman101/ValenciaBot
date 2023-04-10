@@ -8,7 +8,7 @@ using ValenciaBot.HelperFunctions.Clickatell;
 using dotenv.net;
 using ValenciaBot.Data.Enum;
 using CSharpFunctionalExtensions;
-using ValenciaBot.HelperFunctions.ChatFunctions;
+//using ValenciaBot.HelperFunctions.ChatFunctions;
 
 namespace ValenciaBot.Controllers.Clinics;
 
@@ -103,7 +103,7 @@ public class ChatBotController : ControllerBase
                     case Key.CurrentLocation:
                         var latitude = requestContent["latitute"].ToString();
                         var longitude = requestContent["longitude"].ToString();
-                        ChatFunctions.NearestClinics(latitude, longitude);
+                       // ChatFunctions.NearestClinics(latitude, longitude);
                         break;
                     default:
                         return BadRequest();
