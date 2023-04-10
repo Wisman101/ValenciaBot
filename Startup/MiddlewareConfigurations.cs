@@ -13,7 +13,7 @@ public static class MiddlewareConfiguration
         app.UseAuthorization();
 
         app.MapControllers();
-        app.UseCors("ApiCorsPolicy");
+        //app.UseCors("ApiCorsPolicy");
 
         return app;
     }
