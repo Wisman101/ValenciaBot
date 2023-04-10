@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors;
 namespace ValenciaBot.Startup;
 
 public static class MiddlewareConfiguration
@@ -12,6 +13,7 @@ public static class MiddlewareConfiguration
         app.UseAuthorization();
 
         app.MapControllers();
+        app.UseCors("AllowAllOrigins");
 
         return app;
     }

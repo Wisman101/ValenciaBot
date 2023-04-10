@@ -1,4 +1,4 @@
-using ValenciaBot.Data.SeedData;
+using Microsoft.AspNetCore.Cors;
 
 namespace ValenciaBot.Startup;
 
@@ -11,11 +11,11 @@ public static class DependencyInjectionSetup
         services.AddAuthorization();
         services.AddControllers().AddNewtonsoftJson();
         services.AddAutoMapper(typeof(Program));
-        services.AddCors(c => c.AddPolicy("ApiCorsPolicy", policy => {
-                policy.AllowAnyOrigin()
-                .AllowAnyMethod()
-                .AllowAnyHeader();
-            }));
+        services.AddCors(options =>
+        {
+            options.AddPolicy("AllowAllOrigins",
+            builder => builder.AllowAnyOrigin());
+        });
 
         return services;
     }
