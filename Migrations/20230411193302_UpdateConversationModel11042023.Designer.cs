@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ValenciaBot.Data;
@@ -11,9 +12,11 @@ using ValenciaBot.Data;
 namespace ValenciaBot.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class MainContextModelSnapshot : ModelSnapshot
+    [Migration("20230411193302_UpdateConversationModel11042023")]
+    partial class UpdateConversationModel11042023
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -300,9 +303,6 @@ namespace ValenciaBot.Migrations
 
                     b.Property<bool>("sent")
                         .HasColumnType("boolean");
-
-                    b.Property<string>("serviceId")
-                        .HasColumnType("text");
 
                     b.HasKey("Id");
 

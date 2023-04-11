@@ -1,794 +1,2343 @@
 [
-    {
-      "Name": "Equity Afia Kawangware",
-      "Code": "EQA001",
-      "County": "Nairobi",
-      "SubCounty": "Kawangware",
-      "Ward": "Mlango Soko",
-      "Latitude": "-1.2884095836688976",
-      "Longitude": "36.74354049673628",
-      "LocationDescription": "Alingo Plaza Ground and First Floor on Naivasha Road",
-      "Tel": "0765000004",
-      "WhatsappNumber": "0765000004",
-      "Email": "KawangwareReception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Nyahururu",
-      "Code": "EQA002",
-      "County": "Laikipia",
-      "SubCounty": "Nyahururu",
-      "Ward": "Nyahururu",
-      "Latitude": "0.038611",
-      "Longitude": "36.364291",
-      "LocationDescription": "Pongezi Mbaria Complex Building opposite Laikiapia County Offices",
-      "Tel": "0765000240",
-      "WhatsappNumber": "0765000240",
-      "Email": "nyahururureception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Kapsabet",
-      "Code": "EQA003",
-      "County": "Nandi",
-      "SubCounty": "Kapsabet",
-      "Ward": "kapsabet",
-      "Latitude": "0.204470",
-      "Longitude": "35.098058",
-      "LocationDescription": "Sonoiya Heights 1st Floor along Jean - Marie Seroney Road",
-      "Tel": "0765000020",
-      "WhatsappNumber": "0765000020",
-      "Email": "kapsabetreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Kahawa Sukari",
-      "Code": "EQA004",
-      "County": "Kiambu",
-      "SubCounty": "Ruiru",
-      "Ward": "kahawa Sukari",
-      "Latitude": "-1.189310",
-      "Longitude": "36.932400",
-      "LocationDescription": "Ruhan plaza 2nd floor RM 201-Along Kahawa Sukari Avenue next to Quickmart Supermarket",
-      "Tel": "0765 000022",
-      "WhatsappNumber": "0765 000022",
-      "Email": "kahawasukarireception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Donholm",
-      "Code": "EQA005",
-      "County": "nairobi",
-      "SubCounty": "embakasi",
-      "Ward": "Donholm ",
-      "Latitude": "-1.293447",
-      "Longitude": "36.876221",
-      "LocationDescription": "Along Savannah Road, Opposite Deliverance Church, Donholm",
-      "Tel": "0765 000038",
-      "WhatsappNumber": "0765 000038",
-      "Email": "donholmreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia kakuma",
-      "Code": "EQA006",
-      "County": "turkana",
-      "SubCounty": "Kakuma",
-      "Ward": "kakuma",
-      "Latitude": "3.709806",
-      "Longitude": "34.864531",
-      "LocationDescription": "Opposite Lucky Petrol station",
-      "Tel": "0765 000110",
-      "WhatsappNumber": "0765 000110",
-      "Email": "kakumareception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Nkubu",
-      "Code": "EQA007",
-      "County": "Meru",
-      "SubCounty": "tigania-east",
-      "Ward": "nkubu",
-      "Latitude": "-0.063475",
-      "Longitude": "37.662219",
-      "LocationDescription": "Next to KCB Building First floor, Meru-Nkubu Highway",
-      "Tel": "0765 000108",
-      "WhatsappNumber": "0765 000108",
-      "Email": "eqankubureception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia kinoo",
-      "Code": "EQA008",
-      "County": "kiambu",
-      "SubCounty": "kabete",
-      "Ward": "kinoo",
-      "Latitude": "-1.253989",
-      "Longitude": "36.690384",
-      "LocationDescription": "Tatahotte Plaza Ground Floor along Chief’s road",
-      "Tel": "0765 000154",
-      "WhatsappNumber": "0765 000154",
-      "Email": "kinooreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia chavakali ",
-      "Code": "EQA009",
-      "County": "vihiga",
-      "SubCounty": "sabatia",
-      "Ward": "sabatia",
-      "Latitude": "0.153155",
-      "Longitude": "34.704904",
-      "LocationDescription": "Ahulwo Plaza, next to Rubis Along Ksm -Kakamega Road",
-      "Tel": "0765000106",
-      "WhatsappNumber": "0765000106",
-      "Email": "Chavakalireception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Chokaa",
-      "Code": "EQA0010",
-      "County": "nairobi",
-      "SubCounty": "kilimani",
-      "Ward": "kilimani",
-      "Latitude": "-1.277262",
-      "Longitude": "36.786674",
-      "LocationDescription": "Hurlingham 2nd Avenue - Off Kangundo Road\n",
-      "Tel": "0765 000 229",
-      "WhatsappNumber": "0765 000 229",
-      "Email": "chokaareception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia kimbo",
-      "Code": "EQA0011",
-      "County": "kiambu",
-      "SubCounty": "ruiru",
-      "Ward": "kiuu",
-      "Latitude": "-1.146697",
-      "Longitude": "36.958662",
-      "LocationDescription": "Lake oil petrol station, Matangi Road, Kimbo\n",
-      "Tel": "0765 000163",
-      "WhatsappNumber": "0765 000163",
-      "Email": "kimboreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia voi",
-      "Code": "EQA0012",
-      "County": "Taita-taveta",
-      "SubCounty": "voi",
-      "Ward": "voi",
-      "Latitude": "-3.390288",
-      "Longitude": "38.562325",
-      "LocationDescription": "Maghaba Plaza Ground Floor, Kenya Power Street, Voi\n",
-      "Tel": "0765000101",
-      "WhatsappNumber": "0765000101",
-      "Email": "voireception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia marsabit",
-      "Code": "EQA0013",
-      "County": "marsabit",
-      "SubCounty": "marsabit central",
-      "Ward": "marsabit",
-      "Latitude": "2.328205",
-      "Longitude": "37.987307",
-      "LocationDescription": "Lekuton Building, Ground Floor, next to Huduma Centre\n",
-      "Tel": "0765 000066",
-      "WhatsappNumber": "0765 000066",
-      "Email": "marsabitreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia kangemi",
-      "Code": "EQA0014",
-      "County": "Nairobi ",
-      "SubCounty": "westlands",
-      "Ward": "kangemi",
-      "Latitude": "-1.264509",
-      "Longitude": "36.744373",
-      "LocationDescription": "\nRange Chem Towers, 2nd Floor  (Near Mountain View Mall), Waiyaki Way",
-      "Tel": "0765 000 094",
-      "WhatsappNumber": "0765 000 094",
-      "Email": "kangemireception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia makongeni thika",
-      "Code": "EQA0015",
-      "County": "kiambu ",
-      "SubCounty": "thika",
-      "Ward": "thika",
-      "Latitude": "-1.055714",
-      "Longitude": "37.1442730",
-      "LocationDescription": "Makongeni Plaza, Thika Makongeni",
-      "Tel": "0765 000109",
-      "WhatsappNumber": "0765 000109",
-      "Email": "makongenireception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia roysambu",
-      "Code": "EQA0016",
-      "County": "Nairobi ",
-      "SubCounty": "kasarani",
-      "ward": "roysambu ",
-      "Latitude": "-1.213721",
-      "Longitude": "36.892152",
-      "LocationDescription": "Shell Petrol Station-Mirema, along Kamiti Road",
-      "Tel": "0765 000098",
-      "WhatsappNumber": "0765 000098",
-      "Email": "roysambureception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia kapenguria",
-      "Code": "EQA0017",
-      "County": "west pokot",
-      "SubCounty": "kapenguria",
-      "ward": "kapenguria",
-      "Latitude": "1.295317",
-      "Longitude": "35.300453",
-      "LocationDescription": "Laikong House 2nd Floor Opposite Main Stage",
-      "Tel": "0765 000103",
-      "WhatsappNumber": "0765 000103",
-      "Email": "kapenguriareception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Wote",
-      "Code": "EQA0018",
-      "County": "Makueni",
-      "SubCounty": "Mbooni",
-      "ward": "wote",
-      "Latitude": "-1.781690",
-      "Longitude": "37.623236",
-      "LocationDescription": "Nesa Plaza 1st floor Opposite Rubis Petrol station - Machakos Wote Road",
-      "Tel": "0765 000105",
-      "WhatsappNumber": "0765 000105",
-      "Email": "wotereception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Westlands",
-      "Code": "EQA0019",
-      "County": "Nairobi ",
-      "SubCounty": "Westlands",
-      "ward": "westlands",
-      "Latitude": "-1.263095",
-      "Longitude": "36.803856",
-      "LocationDescription": "Reliance Centre 1st Floor, Woodvale Groove",
-      "Tel": "0765 000095",
-      "WhatsappNumber": "0765 000095",
-      "Email": "westlandsreception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Hola",
-      "Code": "EQA0020",
-      "County": "Nairobi ",
-      "SubCounty": "starehe",
-      "ward": "Nairobi Central ",
-      "Latitude": "-1.292766",
-      "Longitude": "36.811502",
-      "LocationDescription": "Next to Ardhi House, Country Road\n",
-      "Tel": "0765 000091",
-      "WhatsappNumber": "0765 000091",
-      "Email": "holareception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-      "Name": "Equity Afia Moi Avenue",
-      "Code": "EQA0021",
-      "County": "Nairobi ",
-      "SubCounty": "Starehe",
-      "ward": "Nairobi Central ",
-      "Latitude": "-1.287572",
-      "Longitude": "36.827247",
-      "LocationDescription": "4th floor Agrho House, Moi Avenue, Nairobi CBD\n",
-      "Tel": "0765 000090",
-      "WhatsappNumber": "0765 000090",
-      "Email": "moiavenuereception@equityafia.co.ke",
-      "OperatingHour": [
-        {
-          "Days": [
-            "Mon",
-            "Tue",
-            "Wed",
-            "Thur",
-            "Fri",
-            "Sat"
-          ],
-        "DaysDescription":"Mon-Sat",
-          "Start": "09:00:00",
-          "End": "19:00:00"
-        },
-        {
-          "Days": [
-            "Sun"
-          ],
-        "DaysDescription":"Sun & Public Holidays",
-          "Start": "10:00:00",
-          "End": "18:00:00"
-        }
-      ]
-    },
-    {
-        "Name": "Equity Afia Medical Centre, Machakos",
-        "Code": "EQA0022",
-        "County": "Machakos",
-        "SubCounty": "Syokimau",
-        "ward": "Syokimau",
-        "Latitude": "-1.5196513974041004",
-        "Longitude": "37.26914653981382",
-        "LocationDescription": "Kiamba Mall 2nd floor, Along Ngei Road",
-        "Tel": " 0765 000067",
-        "WhatsappNumber": "0765 000067",
-        "Email": "machakosreception@equityafia.co.ke",
-        "OperatingHour": [
-          {
-            "Days": [
-              "Mon",
-              "Tue",
-              "Wed",
-              "Thur",
-              "Fri",
-              "Sat"
-            ],
-            "DaysDescription":"Mon-Sat",
-            "Start": "09:00:00",
-            "End": "19:00:00"
-          },
-          {
-            "Days": [
-              "Sun"
-            ],
-            "DaysDescription":"Sun & Public Holidays",
-            "Start": "10:00:00",
-            "End": "18:00:00"
-          }
-        ]
+  {
+    "Name": "Equity Afia Kawangware",
+    "Code": "EQA001",
+    "County": "Nairobi",
+    "SubCounty": "Kawangware",
+    "Ward": "Mlango Soko",
+    "Latitude": "-1.2884095836688976",
+    "Longitude": "36.74354049673628",
+    "LocationDescription": "Alingo Plaza Ground and First Floor on Naivasha Road",
+    "Tel": "0765000004",
+    "WhatsappNumber": "0765000004",
+    "Email": "KawangwareReception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+        "DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
       }
-  ]
+    ]
+  },
+  {
+    "Name": "Equity Afia Nyahururu",
+    "Code": "EQA002",
+    "County": "Laikipia",
+    "SubCounty": "Nyahururu",
+    "Ward": "Nyahururu",
+    "Latitude": "0.038611",
+    "Longitude": "36.364291",
+    "LocationDescription": "Pongezi Mbaria Complex Building opposite Laikiapia County Offices",
+    "Tel": "0765000240",
+    "WhatsappNumber": "0765000240",
+    "Email": "nyahururureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kapsabet",
+    "Code": "EQA003",
+    "County": "Nandi",
+    "SubCounty": "Kapsabet",
+    "Ward": "kapsabet",
+    "Latitude": "0.204470",
+    "Longitude": "35.098058",
+    "LocationDescription": "Sonoiya Heights 1st Floor along Jean - Marie Seroney Road",
+    "Tel": "0765000020",
+    "WhatsappNumber": "0765000020",
+    "Email": "kapsabetreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kahawa Sukari",
+    "Code": "EQA004",
+    "County": "Kiambu",
+    "SubCounty": "Ruiru",
+    "Ward": "kahawa Sukari",
+    "Latitude": "-1.189310",
+    "Longitude": "36.932400",
+    "LocationDescription": "Ruhan plaza 2nd floor RM 201-Along Kahawa Sukari Avenue next to Quickmart Supermarket",
+    "Tel": "0765 000022",
+    "WhatsappNumber": "0765 000022",
+    "Email": "kahawasukarireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Donholm",
+    "Code": "EQA005",
+    "County": "nairobi",
+    "SubCounty": "embakasi",
+    "Ward": "Donholm ",
+    "Latitude": "-1.293447",
+    "Longitude": "36.876221",
+    "LocationDescription": "Along Savannah Road, Opposite Deliverance Church, Donholm",
+    "Tel": "0765 000038",
+    "WhatsappNumber": "0765 000038",
+    "Email": "donholmreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kakuma",
+    "Code": "EQA006",
+    "County": "turkana",
+    "SubCounty": "Kakuma",
+    "Ward": "kakuma",
+    "Latitude": "3.709806",
+    "Longitude": "34.864531",
+    "LocationDescription": "Opposite Lucky Petrol station",
+    "Tel": "0765 000110",
+    "WhatsappNumber": "0765 000110",
+    "Email": "kakumareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Nkubu",
+    "Code": "EQA007",
+    "County": "Meru",
+    "SubCounty": "tigania-east",
+    "Ward": "nkubu",
+    "Latitude": "-0.063475",
+    "Longitude": "37.662219",
+    "LocationDescription": "Next to KCB Building First floor, Meru-Nkubu Highway",
+    "Tel": "0765 000108",
+    "WhatsappNumber": "0765 000108",
+    "Email": "eqankubureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kinoo",
+    "Code": "EQA008",
+    "County": "kiambu",
+    "SubCounty": "kabete",
+    "Ward": "kinoo",
+    "Latitude": "-1.253989",
+    "Longitude": "36.690384",
+    "LocationDescription": "Tatahotte Plaza Ground Floor along Chief’s road",
+    "Tel": "0765 000154",
+    "WhatsappNumber": "0765 000154",
+    "Email": "kinooreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia chavakali ",
+    "Code": "EQA009",
+    "County": "vihiga",
+    "SubCounty": "sabatia",
+    "Ward": "sabatia",
+    "Latitude": "0.153155",
+    "Longitude": "34.704904",
+    "LocationDescription": "Ahulwo Plaza, next to Rubis Along Ksm -Kakamega Road",
+    "Tel": "0765000106",
+    "WhatsappNumber": "0765000106",
+    "Email": "Chavakalireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Chokaa",
+    "Code": "EQA0010",
+    "County": "nairobi",
+    "SubCounty": "kilimani",
+    "Ward": "kilimani",
+    "Latitude": "-1.277262",
+    "Longitude": "36.786674",
+    "LocationDescription": "Hurlingham 2nd Avenue - Off Kangundo Road\n",
+    "Tel": "0765 000 229",
+    "WhatsappNumber": "0765 000 229",
+    "Email": "chokaareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kimbo",
+    "Code": "EQA0011",
+    "County": "kiambu",
+    "SubCounty": "ruiru",
+    "Ward": "kiuu",
+    "Latitude": "-1.146697",
+    "Longitude": "36.958662",
+    "LocationDescription": "Lake oil petrol station, Matangi Road, Kimbo\n",
+    "Tel": "0765 000163",
+    "WhatsappNumber": "0765 000163",
+    "Email": "kimboreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia voi",
+    "Code": "EQA0012",
+    "County": "Taita-taveta",
+    "SubCounty": "voi",
+    "Ward": "voi",
+    "Latitude": "-3.390288",
+    "Longitude": "38.562325",
+    "LocationDescription": "Maghaba Plaza Ground Floor, Kenya Power Street, Voi\n",
+    "Tel": "0765000101",
+    "WhatsappNumber": "0765000101",
+    "Email": "voireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia marsabit",
+    "Code": "EQA0013",
+    "County": "marsabit",
+    "SubCounty": "marsabit central",
+    "Ward": "marsabit",
+    "Latitude": "2.328205",
+    "Longitude": "37.987307",
+    "LocationDescription": "Lekuton Building, Ground Floor, next to Huduma Centre\n",
+    "Tel": "0765 000066",
+    "WhatsappNumber": "0765 000066",
+    "Email": "marsabitreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kangemi",
+    "Code": "EQA0014",
+    "County": "Nairobi ",
+    "SubCounty": "westlands",
+    "Ward": "kangemi",
+    "Latitude": "-1.264509",
+    "Longitude": "36.744373",
+    "LocationDescription": "\nRange Chem Towers, 2nd Floor  (Near Mountain View Mall), Waiyaki Way",
+    "Tel": "0765 000 094",
+    "WhatsappNumber": "0765 000 094",
+    "Email": "kangemireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia makongeni thika",
+    "Code": "EQA0015",
+    "County": "kiambu ",
+    "SubCounty": "thika",
+    "Ward": "thika",
+    "Latitude": "-1.055714",
+    "Longitude": "37.1442730",
+    "LocationDescription": "Makongeni Plaza, Thika Makongeni",
+    "Tel": "0765 000109",
+    "WhatsappNumber": "0765 000109",
+    "Email": "makongenireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia roysambu",
+    "Code": "EQA0016",
+    "County": "Nairobi ",
+    "SubCounty": "kasarani",
+    "ward": "roysambu ",
+    "Latitude": "-1.213721",
+    "Longitude": "36.892152",
+    "LocationDescription": "Shell Petrol Station-Mirema, along Kamiti Road",
+    "Tel": "0765 000098",
+    "WhatsappNumber": "0765 000098",
+    "Email": "roysambureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kapenguria",
+    "Code": "EQA0017",
+    "County": "west pokot",
+    "SubCounty": "kapenguria",
+    "ward": "kapenguria",
+    "Latitude": "1.295317",
+    "Longitude": "35.300453",
+    "LocationDescription": "Laikong House 2nd Floor Opposite Main Stage",
+    "Tel": "0765 000103",
+    "WhatsappNumber": "0765 000103",
+    "Email": "kapenguriareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Wote",
+    "Code": "EQA0018",
+    "County": "Makueni",
+    "SubCounty": "Mbooni",
+    "ward": "wote",
+    "Latitude": "-1.781690",
+    "Longitude": "37.623236",
+    "LocationDescription": "Nesa Plaza 1st floor Opposite Rubis Petrol station - Machakos Wote Road",
+    "Tel": "0765 000105",
+    "WhatsappNumber": "0765 000105",
+    "Email": "wotereception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Westlands",
+    "Code": "EQA0019",
+    "County": "Nairobi ",
+    "SubCounty": "Westlands",
+    "ward": "westlands",
+    "Latitude": "-1.263095",
+    "Longitude": "36.803856",
+    "LocationDescription": "Reliance Centre 1st Floor, Woodvale Groove",
+    "Tel": "0765 000095",
+    "WhatsappNumber": "0765 000095",
+    "Email": "westlandsreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Hola",
+    "Code": "EQA0020",
+    "County": "Nairobi ",
+    "SubCounty": "starehe",
+    "ward": "Nairobi Central ",
+    "Latitude": "-1.292766",
+    "Longitude": "36.811502",
+    "LocationDescription": "Next to Ardhi House, Country Road\n",
+    "Tel": "0765 000091",
+    "WhatsappNumber": "0765 000091",
+    "Email": "holareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Moi Avenue",
+    "Code": "EQA0021",
+    "County": "Nairobi ",
+    "SubCounty": "Starehe",
+    "ward": "Nairobi Central ",
+    "Latitude": "-1.287572",
+    "Longitude": "36.827247",
+    "LocationDescription": "4th floor Agrho House, Moi Avenue, Nairobi CBD\n",
+    "Tel": "0765 000090",
+    "WhatsappNumber": "0765 000090",
+    "Email": "moiavenuereception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kisumu CBD",
+    "Code": "EQA0022",
+    "County": "Kisumu",
+    "SubCounty": "Kisumu",
+    "ward": "Kisumu cbd",
+    "Latitude": "-0.082557",
+    "Longitude": "34.774926",
+    "LocationDescription": "Tivoli Centre, First floor Opposite City Hall Off Achieng Oneko Road\n",
+    "Tel": "0765 000104",
+    "WhatsappNumber": "0765 000104",
+    "Email": "kisumucbdreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Githunguri",
+    "Code": "EQA0023",
+    "County": "Kiambu",
+    "SubCounty": "githunguri",
+    "ward": "githunguri",
+    "Latitude": "-1.169937",
+    "Longitude": "36.827145",
+    "LocationDescription": "K-unity Building, Githunguri Town\n",
+    "Tel": "0765 000099",
+    "WhatsappNumber": "0765 000099",
+    "Email": "githungurireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia lodwar",
+    "Code": "EQA0024",
+    "County": "turkana",
+    "SubCounty": "turkana central",
+    "ward": "lodwar",
+    "Latitude": "3.107514",
+    "Longitude": "35.605739",
+    "LocationDescription": "Kanamkemer along Robert Junction, Catholic Road opposite Emojong Hardware",
+    "Tel": "0765 000068",
+    "WhatsappNumber": "0765 000068",
+    "Email": "lodwarreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kiserian",
+    "Code": "EQA0025",
+    "County": "Kajiado",
+    "SubCounty": "Ongata Rongai",
+    "ward": "kiserian",
+    "Latitude": "-1.430455",
+    "Longitude": "36.687011",
+    "LocationDescription": "Mathathi Business Centre, Magadi Road",
+    "Tel": "0765 000080",
+    "WhatsappNumber": "0765 000080",
+    "Email": "kiserianreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Eldoret",
+    "Code": "EQA0026",
+    "County": "Uasin gishu",
+    "SubCounty": "Eldoret East",
+    "ward": "Kapsoya",
+    "Latitude": "0.516419",
+    "Longitude": "35.280616",
+    "LocationDescription": "Faulu Building 1st Floor along Uganda Road",
+    "Tel": "0765 000070",
+    "WhatsappNumber": "0765 000070",
+    "Email": "eldoretreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Ruai",
+    "Code": "EQA0027",
+    "County": "Nairobi ",
+    "SubCounty": "Kasarani",
+    "ward": "Ruai",
+    "Latitude": "-1.270808",
+    "Longitude": "36.996490",
+    "LocationDescription": "Woodlands Plaza, Equity Bank building along Kangundo Road",
+    "Tel": "0765 000081",
+    "WhatsappNumber": "0765 000081",
+    "Email": "ruaireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kariobangi",
+    "Code": "EQA0028",
+    "County": "Nairobi ",
+    "SubCounty": "Starehe ",
+    "ward": "kariobangi north",
+    "Latitude": "-1.258912",
+    "Longitude": "36.879252",
+    "LocationDescription": "Along Outering Road, Near Equity Bank",
+    "Tel": "0765 000083",
+    "WhatsappNumber": "0765 000083",
+    "Email": "kariobangireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia lavington",
+    "Code": "EQA0029",
+    "County": "Nairobi ",
+    "SubCounty": "Dagoretti North",
+    "ward": "lavington",
+    "Latitude": "-1.279978",
+    "Longitude": "36.770260",
+    "LocationDescription": "Lavington Mall, 3rd Floor, James Gichuru Road",
+    "Tel": "0765 000086",
+    "WhatsappNumber": "0765 000086",
+    "Email": "lavingtonreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Umoja",
+    "Code": "EQA0030",
+    "County": "Nairobi ",
+    "SubCounty": "Embakasi East",
+    "ward": "umoja 1",
+    "Latitude": "-1.282328",
+    "Longitude": "36.887212",
+    "LocationDescription": "Moi Drive - Opposite PCEA Umoja 1",
+    "Tel": "0765 000084",
+    "WhatsappNumber": "0765 000084",
+    "Email": "umojareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kerugoya",
+    "Code": "EQA0031",
+    "County": "kirinyaga",
+    "SubCounty": "Kerugoya ",
+    "ward": "kerugoya township",
+    "Latitude": "-0.504609",
+    "Longitude": "37.279702",
+    "LocationDescription": "Anchor Plaza, 1st Floor Hospital road",
+    "Tel": "0765 000088",
+    "WhatsappNumber": "0765 000088",
+    "Email": "kerugoyareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Mountain Mall",
+    "Code": "EQA0032",
+    "County": "Nairobi",
+    "SubCounty": "Kasarani",
+    "ward": "roysambu",
+    "Latitude": "-1.232791",
+    "Longitude": "36.873925",
+    "LocationDescription": "2nd Floor Mountain Mall Building along Thika Road",
+    "Tel": "0765 000069",
+    "WhatsappNumber": "0765 000069",
+    "Email": "mountainmallreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Eastleigh ",
+    "Code": "EQA0033",
+    "County": "Nairobi",
+    "SubCounty": "Kamukunji",
+    "ward": "Eastleigh North",
+    "Latitude": "-1.280251",
+    "Longitude": "36.849605",
+    "LocationDescription": "Off General Waruingi Road, near Ismariot hotel",
+    "Tel": "0765 000085",
+    "WhatsappNumber": "0765 000085",
+    "Email": "eastleighreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Machakos",
+    "Code": "EQA0034",
+    "County": "Machakos",
+    "SubCounty": "Machakos",
+    "ward": "Machakos Central",
+    "Latitude": "-1.519892",
+    "Longitude": "37.269168",
+    "LocationDescription": "Kiamba Mall 2nd floor, Along Ngei Road",
+    "Tel": "0765 000067",
+    "WhatsappNumber": "0765 000067",
+    "Email": "machakosreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Juja",
+    "Code": "EQA0035",
+    "County": "Kiambu ",
+    "SubCounty": "Thika",
+    "ward": "Juja",
+    "Latitude": "-1.107142",
+    "Longitude": "37.016103",
+    "LocationDescription": "Equity Afia Juja - Kalimoni Highwayview Plaza, Ground Floor, Near Juja Bridge",
+    "Tel": "0765 000062",
+    "WhatsappNumber": "0765 000062",
+    "Email": "jujareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kitui",
+    "Code": "EQA0036",
+    "County": "Kitui",
+    "SubCounty": "kitui Central",
+    "ward": "Township",
+    "Latitude": "-1.375044",
+    "Longitude": "37.995144",
+    "LocationDescription": "Equity Afia Kitui - C House, 2nd Floor, Kitui-Kibwezi Road opp. Maguna Supermarket",
+    "Tel": "0765 000058",
+    "WhatsappNumber": "0765 000058",
+    "Email": "kituireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia South B",
+    "Code": "EQA0037",
+    "County": "Nairobi",
+    "Sub County": "Makadara",
+    "ward": "South b",
+    "Latitude": "-1.311081",
+    "Longitude!": "36.835611",
+    "LocationDescription": "Equity Afia South B - Vumira House, 1st Floor, Mchumbi Road, South B Shopping Centre",
+    "Tel": "0765 000061",
+    "WhatsappNumber": "0765 000061",
+    "Email": "southbreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Ngong Road",
+    "Code": "EQA0038",
+    "County": "Nairobi",
+    "Sub County": "Dagoretti North",
+    "ward": "Kilimani",
+    "Latitude": "-1.300087",
+    "Longitude!": "36.786320",
+    "LocationDescription": "KISM Towers, 1st Floor, Ngong Road, near Prestige Mall",
+    "Tel": "0765 000056",
+    "WhatsappNumber": "0765 000056",
+    "Email": "ngongroadreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Pangani",
+    "Code": "EQA0039",
+    "County": "Nairobi",
+    "Sub County": "Pangani",
+    "ward": "Pangani",
+    "Latitude": "-1.266486",
+    "Longitude!": "36.836592",
+    "LocationDescription": "Equity Afia Pangani - Goodwill Building Ground Floor-Agoi Road, Pangani Shopping Centre",
+    "Tel": "0765 000065",
+    "WhatsappNumber": "0765 000065",
+    "Email": "panganireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Muranga",
+    "Code": "EQA0040",
+    "County": "Muranga",
+    "Sub County": "Muranga",
+    "ward": "Muranga Central",
+    "Latitude": "-0.720796",
+    "Longitude!": "37.157539",
+    "LocationDescription": "Equity Afia Murang'a -ECN Building Ground & 1st Floor, Uhuru Street near National oil Petrol Station, Opp Absa bank",
+    "Tel": "0765 000052",
+    "WhatsappNumber": "0765 000052",
+    "Email": "murangareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kisii",
+    "Code": "EQA0041",
+    "County": "Kisii",
+    "Sub County": "Kisii",
+    "ward": "Kisii",
+    "Latitude": "-0.672289",
+    "Longitude!": "34.770530",
+    "LocationDescription": "Equity Afia Kisii - Ouru Complex, 3rd floor Kisii-Kisumu Highway",
+    "Tel": "0765 000053",
+    "WhatsappNumber": "0765 000053",
+    "Email": "kisiireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Matuu",
+    "Code": "EQA0042",
+    "County": "Machakos ",
+    "Sub County": "Yatta",
+    "ward": "Matuu",
+    "Latitude": "-1.147024",
+    "Longitude!": "37.548017",
+    "LocationDescription": "Equity Afia Matuu - 3rd Floor, A1 Plaza, along KC Road, Matuu",
+    "Tel": "00000000",
+    "WhatsappNumber": "0000000",
+    "Email": "matuureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kenol",
+    "Code": "EQA0043",
+    "County": "Muranga",
+    "Sub County": "Muranga South",
+    "ward": "Kenol",
+    "Latitude": "-0.939380",
+    "Longitude!": "37.124211",
+    "LocationDescription": "Equity Bank Building, Mbotco Plaza, First Floor along Kenol Sagana Road",
+    "Tel": "0765 000049",
+    "WhatsappNumber": "0765 000049",
+    "Email": "kenolreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Syokimau",
+    "Code": "EQA0044",
+    "County": "Machakos",
+    "Sub County": "Athi River",
+    "ward": "syokimau",
+    "Latitude": "-1.357148",
+    "Longitude!": "36.908125",
+    "LocationDescription": "Equity Afia Syokimau, Teko Shell, Syokimau Service Station, Shop B, 3rd Floor next to Naivas Supermarket, Msa Road\n\n",
+    "Tel": "0765 000044",
+    "WhatsappNumber": "0765 000044",
+    "Email": "syokimaureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Naivasha",
+    "Code": "EQA0045",
+    "County": "Nakuru",
+    "Sub County": "Naivasha",
+    "ward": "Naivasha",
+    "Latitude": "-1.288562",
+    "Longitude": "36.743453",
+    "LocationDescription": "Equity Afia Naivasha, Lemacy Building, 1st Floor behind Biashara Plaza along Mbaria Kaniu Road, Naivasha\n\n",
+    "Tel": "0765 000047",
+    "WhatsappNumber": "0765 000047",
+    "Email": "naivashareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kisumu",
+    "Code": "EQA0046",
+    "County": "Kisumu",
+    "Sub County": "Kisumu",
+    "ward": "kondele",
+    "Latitude": "-0.082541",
+    "Longitude": "34.774920",
+    "LocationDescription": "Kondele Business Centre, next to Shivling Supermarket, Kisumu Kakamega Road\n\n",
+    "Tel": "0765 000045",
+    "WhatsappNumber": "0765 000045",
+    "Email": "kisumureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Imara Daima",
+    "Code": "EQA0047",
+    "County": "Nairobi",
+    "Sub County": "Embakasi",
+    "ward": "Imara daima",
+    "Latitude": "-1.324863",
+    "Longitude": "36.882821",
+    "LocationDescription": "Equity Afia Imara Daima, Villa Franca Shopping Centre, Cosmas Ndeti Road\n\n",
+    "Tel": "0765 000043",
+    "WhatsappNumber": "0765 000043",
+    "Email": "imaradaimareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia langata",
+    "Code": "EQA0048",
+    "County": "Nairobi",
+    "Sub County": "langata ",
+    "ward": "langata",
+    "Latitude": "-1.321985",
+    "Longitude": "36.802399",
+    "LocationDescription": "Equity Afia Langata, Freedom Heights Mall, 4th Floor Along Langata Road  \n\n",
+    "Tel": "0765 000051",
+    "WhatsappNumber": "0765 000051",
+    "Email": "langatareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Nanyuki",
+    "Code": "EQA0048",
+    "County": "Laikipia",
+    "Sub County": "Nanyuki ",
+    "ward": "nanyuki",
+    "Latitude": "0.006188",
+    "Longitude": "37.073180",
+    "LocationDescription": "Nanyuki Business Centre, Nyeri-Nanyuki road, opposite Toyota Kenya\n\n",
+    "Tel": "0765 000087",
+    "WhatsappNumber": "0765 000087",
+    "Email": "nanyukireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Karatina",
+    "Code": "EQA0048",
+    "County": "Nyeri",
+    "Sub County": "Karatina",
+    "ward": "karatina town",
+    "Latitude": "-0.422372",
+    "Longitude": "36.953270",
+    "LocationDescription": "Equity Afia Karatina,The trade centre 2nd floor along Railway road\n\n\n\n",
+    "Tel": "0765 000054",
+    "WhatsappNumber": "0765 000054",
+    "Email": "karatinareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Limuru",
+    "Code": "EQA0049",
+    "County": "kiambu",
+    "Sub County": "Limuru",
+    "ward": "limuru central",
+    "Latitude": "-1.108332",
+    "Longitude": "36.640471",
+    "LocationDescription": "Equity Afia Limuru- Gitungo House Ground floor Kiambu Road, Opposite Naivas,\n\n\n\n",
+    "Tel": "0765 000060",
+    "WhatsappNumber": "0765 000060",
+    "Email": "limurureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Upperhill",
+    "Code": "EQA0050",
+    "County": "Nairobi ",
+    "Sub County": "kilimanj",
+    "ward": "Upperhill ",
+    "Latitude": "-1.1286684",
+    "Longitude": "36.816931",
+    "LocationDescription": "Equity Afia Upper hill, KMA Centre, Ground floor Mara road\n",
+    "Tel": "0765 000048",
+    "WhatsappNumber": "0765 000048",
+    "Email": "upperhillreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kitale",
+    "Code": "EQA0051",
+    "County": "Trans nzoia",
+    "Sub County": "Kitale ",
+    "ward": "Kitale ",
+    "Latitude": "1.014705",
+    "Longitude": "35.002606",
+    "LocationDescription": "Equity Afia Kitale, Parkview towers, 3rd Floor Along Moi Avenue street.\n",
+    "Tel": "0765 000050",
+    "WhatsappNumber": "0765 000050",
+    "Email": "kitalereception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Eastern Bypass Kamakis",
+    "Code": "EQA0052",
+    "County": "kiambu",
+    "Sub County": "Ruiru",
+    "ward": "Ruiru East Gatongora",
+    "Latitude": "-1.169061",
+    "Longitude": "36.969788",
+    "LocationDescription": "Equity Afia Bypass, The Premier Northpark Mall",
+    "Tel": "0765 000046",
+    "WhatsappNumber": "0765 000046",
+    "Email": "bypassreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Ngong",
+    "Code": "EQA0053",
+    "County": "kajiado",
+    "Sub County": "ngong",
+    "ward": "ngong",
+    "Latitude": "-1.356443",
+    "Longitude": "36.656959",
+    "LocationDescription": "Equity Afia Ngong, Ngong Heights along Ngong Road\n\n",
+    "Tel": "0765 000042",
+    "WhatsappNumber": "0765 000042",
+    "Email": "ngongreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia kitengela ",
+    "Code": "EQA0054",
+    "County": "kajiado",
+    "Sub County": "kajiado south",
+    "ward": "Kitengela ",
+    "Latitude": "-1.482868",
+    "Longitude": "36.956755",
+    "LocationDescription": "Equity Afia Kitengela, Maasai Discovery building along Nairobi-Namanga Highway\n\n",
+    "Tel": "0765 000041",
+    "WhatsappNumber": "0765 000041",
+    "Email": "kitengelareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia githurai",
+    "Code": "EQA0055",
+    "County": "kiambu",
+    "Sub County": "ruiru ",
+    "ward": "githurai",
+    "Latitude": "-1.203299",
+    "Longitude": "36.916400",
+    "LocationDescription": "Githurai Medical Centre, Charma House, 2nd-floor Ngumba Road next to Equity Bank\n\n",
+    "Tel": "0765 000039",
+    "WhatsappNumber": "0765 000039",
+    "Email": "githuraireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Changamwe",
+    "Code": "EQA0056",
+    "County": "mombasa",
+    "Sub County": "Changamwe",
+    "ward": "changamwe ",
+    "Latitude": "-4.027283",
+    "Longitude": "39.627527",
+    "LocationDescription": "Romollas Building, 3rd Floor,At the Junction between Magongo Road and Airport road, adjacent to Shell petrol station Changamwe\n\n",
+    "Tel": "0765 000037",
+    "WhatsappNumber": "0765 000037",
+    "Email": "changamwereception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kiambu",
+    "Code": "EQA0057",
+    "County": "kiambu ",
+    "Sub County": "kiambu",
+    "ward": "kiambu town",
+    "Latitude": "-1.169944",
+    "Longitude": "36.827134",
+    "LocationDescription": "Pongezi Plaza, Along Biashara Street, Opposite Kangangi Market\n",
+    "Tel": "0765 000036",
+    "WhatsappNumber": "0765 000036",
+    "Email": "kiambureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kasarani",
+    "Code": "EQA0058",
+    "County": "Nairobi ",
+    "Sub County": "kasarani ",
+    "ward": "kasarani ",
+    "Latitude": "-1.219026",
+    "Longitude": "36.895642",
+    "LocationDescription": "Equity Afia Building, Near Naivas Supermarket, Opposite Vision Plaza.",
+    "Tel": "0765 000035",
+    "WhatsappNumber": "0765 000035",
+    "Email": "kasaranireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kahawa west",
+    "Code": "EQA0059",
+    "County": "kiambu ",
+    "Sub County": "Ruiru ",
+    "ward": "kahawa west",
+    "Latitude": "-1.182931",
+    "Longitude": "36.896810",
+    "LocationDescription": "Kahawa West Medical Centre, Glory House, Kahawa Station Road, Next to Mahiga Primary School",
+    "Tel": "0765 000009",
+    "WhatsappNumber": "0765 000009",
+    "Email": "kahawawestreception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kikuyu ",
+    "Code": "EQA0060",
+    "County": "kiambu ",
+    "Sub County": "kikuyu",
+    "ward": "kikuyu Township ",
+    "Latitude": "-1.243982",
+    "Longitude": "36.662596",
+    "LocationDescription": "Kikuyu Medical Centre, 1st Floor Live well House,Along Kikuyu -Nderi road, Kikuyu",
+    "Tel": "0765 0000030",
+    "WhatsappNumber": "0765 000030",
+    "Email": "kikuyureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Utawala",
+    "Code": "EQA0061",
+    "County": "Nairobi ",
+    "Sub County": "embakasi ",
+    "ward": "utawala",
+    "Latitude": "-1.289058",
+    "Longitude": "36.950200",
+    "LocationDescription": "Utawala Medical Centre, 1st Floor Eunrobe Plaza, Opposite Administration police training Along Eastern-Bypass",
+    "Tel": "0765 000010",
+    "WhatsappNumber": "0765 000010",
+    "Email": "utawalareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Meru",
+    "Code": "EQA0062",
+    "County": "meru",
+    "Sub County": "Meru",
+    "ward": "meru town",
+    "Latitude": "0.063405",
+    "Longitude": "37.646224",
+    "LocationDescription": "Along Meru-Maua Road, near Meru school, Makutano",
+    "Tel": "0765 000034",
+    "WhatsappNumber": "0765 000034",
+    "Email": "merureception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Kakamega",
+    "Code": "EQA0063",
+    "County": "Kakamega",
+    "Sub County": "kakamega",
+    "ward": "kakamega town",
+    "Latitude": "0.282750",
+    "Longitude": "34.751868",
+    "LocationDescription": "Walia Business Centre, Kisumu - Kakamega Highway,\n\n",
+    "Tel": "0765 000033",
+    "WhatsappNumber": "0765 000033",
+    "Email": "kakamegareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+        "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+"DaysDescription":"sun and public holidays",
+"DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  }
+]

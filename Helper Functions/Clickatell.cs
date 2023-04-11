@@ -11,7 +11,7 @@ class Api
     public static Task<HttpResponseMessage> SendMessage(string to, string message)
     {
         DotEnv.Load();
-        var token = Environment.GetEnvironmentVariable("APPSETTING_Clickatell_Api_Key");
+        var token = Environment.GetEnvironmentVariable("Clickatell_Api_Key");
         Dictionary<string, string> Params = new Dictionary<string, string>();
         Params.Add("channel", "whatsapp");
         Params.Add("to", to);
@@ -51,9 +51,7 @@ class Rest
                 var response = await httpClient.SendAsync(request);
                 return response;
             }
-        }
-
-        
+        }  
     }
 
 

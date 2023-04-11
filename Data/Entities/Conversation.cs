@@ -1,5 +1,6 @@
 using Newtonsoft.Json.Linq;
 using ValenciaBot.Data.Abstract;
+using ValenciaBot.Data.Enum;
 
 namespace ValenciaBot.Data.Entities;
 
@@ -12,4 +13,6 @@ public class Conversation : BaseEntity
     public JToken MetaData { get; set; }
     public bool sent { get; set; }
     public JToken? log { get; set; }
+    public ServiceCategory category {get; set;}
+    public string? serviceId { get; set; }
 }

@@ -19,18 +19,20 @@ public static class SeedData
         var messageSetups = JsonConvert.DeserializeObject<List<MessageSetup>>(await File.ReadAllTextAsync(filePath));
         foreach(var messageSetup in messageSetups)
         {
-            var setup = context.MessageSetups.Any(setup => setup.Id == messageSetup.Id);
-            if(setup)
+            var existingSetup = await context.MessageSetups.FirstOrDefaultAsync(setup => setup.Id == messageSetup.Id);
+            if(existingSetup is not null)
             {
-                context.MessageSetups.Update(messageSetup);
+                context.MessageSetups.Update(existingSetup);
             }
             else
             {
                 await context.MessageSetups.AddAsync(messageSetup);
             }
+            
+            await context.SaveChangesAsync();
         }
         
-        await context.SaveChangesAsync();
+        
     }
     #endregion
 

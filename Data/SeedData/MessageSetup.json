@@ -24,9 +24,10 @@
                 "Response":"How would you like to do your search:\n1. Search for the nearest Clinic around you?\n2. Search by county?\n3. Search by Clinic Code/Name?",
                 "isDynamic": false,
                 "createdBy": "System",
+                "key": 17,
                 "Children": [
                     {
-                        "Id": 4,
+                        "Id": 8,
                         "IsActive": true,
                         "Input": "1",
                         "Response":"Kindly share Your Current Location so as to get a list of clinics near you.",
@@ -35,7 +36,7 @@
                         "Key": 4,
                         "Children": [
                             {
-                                "Id": 5,
+                                "Id": 13,
                                 "isActive": true,
                                 "Input": "current location",
                                 "Response":"Clinics Near you are:\n",
@@ -44,12 +45,154 @@
                                 "Key": 5,
                                 "Children": [
                                     {
-                                        "Id": 6,
+                                        "Id": 18,
                                         "isActive": true,
                                         "Input": "Clinic code",
                                         "Response":"Clinics Details",
                                         "isDynamic": true,
                                         "Key": 6,
+                                        "createdBy": "System"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Id": 9,
+                        "IsActive": true,
+                        "Input": "2",
+                        "Response":"Reply with the County Name",
+                        "createdBy": "System",
+                        "isDynamic": true,
+                        "Key": 7,
+                        "Children": [
+                            {
+                                "Id": 14,
+                                "isActive": true,
+                                "Input": "County Name",
+                                "Response":"Clinics In The name",
+                                "isDynamic": true,
+                                "Key": 8,
+                                "createdBy": "System",
+                                "Children": [
+                                    {
+                                        "Id": 19,
+                                        "isActive": true,
+                                        "Input": "Clinic code",
+                                        "Response":"Clinics Details",
+                                        "isDynamic": true,
+                                        "Key": 6,
+                                        "createdBy": "System"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "Id": 10,
+                        "IsActive": true,
+                        "Input": "3",
+                        "Response":"Reply with the Clinic Code or Name",
+                        "createdBy": "System",
+                        "isDynamic": true,
+                        "Key": 9,
+                        "Children": [
+                            {
+                                "Id": 15,
+                                "isActive": true,
+                                "Input": "Clinic code",
+                                "Response":"Clinics Details",
+                                "isDynamic": true,
+                                "Key": 6,
+                                "createdBy": "System"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Id": 4,
+                "IsActive": true,
+                "Input": "2",
+                "Response":"Kindly Select The service you need to schedule an appointment for",
+                "isDynamic": true,
+                "key": 3,
+                "createdBy": "System"
+            },
+            {
+                "Id": 5,
+                "IsActive": true,
+                "Input": "1",
+                "Response":"Kindly Respond with the preferred date for the appointment in the formart MM/DD/YYYY",
+                "isDynamic": true,
+                "key": 11,
+                "createdBy": "System",
+                "Children": [
+                    {
+                        "Id": 11,
+                        "isActive": true,
+                        "Input": "Booking Date",
+                        "Response":"Kindly Reply with the preferred time\n1. 08:00 - 10:00\n2. 10:00 - 12:00\n3. 12:00 - 14:00\n4. 14:00 - 16:00\n5. 16:00 - 18:00",
+                        "isDynamic": true,
+                        "Key": 12,
+                        "createdBy": "System",
+                        "Children": [
+                            {
+                                "Id": 16,
+                                "isActive": true,
+                                "Input": "Booking Time",
+                                "Response":"Your Appointment Request has been sent, I will alert you once Confirmed",
+                                "isDynamic": true,
+                                "key": 13,
+                                "createdBy": "System"
+                            }
+                        ]
+                    }
+                ]
+            },
+            {
+                "Id": 6,
+                "IsActive": true,
+                "Input": "3",
+                "Response":"Search for clinic",
+                "isDynamic": true,
+                "key": 10,
+                "createdBy": "System"
+            },
+            {
+                "Id": 7,
+                "IsActive": true,
+                "Input": "1",
+                "Response":"Kindly select service you want to give feedback for",
+                "isDynamic": true,
+                "key": 3,
+                "createdBy": "System",
+                "Children": [
+                    {
+                        "Id": 12,
+                        "isActive": true,
+                        "Input": "Service Id",
+                        "Response":"Kindly rate the service you received in the range between 1-10",
+                        "isDynamic": true,
+                        "key": 14,
+                        "createdBy": "System",
+                        "Children": [
+                            {
+                                "Id": 17,
+                                "isActive": true,
+                                "Input": "rating",
+                                "Response":"Kindly give a reason for the above response",
+                                "isDynamic": true,
+                                "key": 15,
+                                "createdBy": "System",
+                                "Children": [
+                                    {
+                                        "Id": 20,
+                                        "isActive": true,
+                                        "Input": "rating reason",
+                                        "Response":"Thank you for sharing your response.",
+                                        "isDynamic": true,
+                                        "key": 16,
                                         "createdBy": "System"
                                     }
                                 ]
