@@ -1,3 +1,4 @@
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
 using ValenciaBot.Data.Entities;
 
@@ -40,10 +41,10 @@ public static class SeedData
         var clinics = JsonConvert.DeserializeObject<List<Clinic>>(await File.ReadAllTextAsync(filePath));
         foreach(var clinic in clinics)
         {
-            var exist = context.Clinics.Any(c => c.Code == clinic.Code);
-            if(exist)
+            var existingClinic = await context.Clinics.FirstOrDefaultAsync(c => c.Code.ToLower() == clinic.Code.ToLower());
+            if(existingClinic is not null)
             {
-                context.Clinics.Update(clinic);
+                context.Clinics.Update(existingClinic);
             }
             else
             {

@@ -21,5 +21,5 @@ public class ClinicServiceDtoPost
     public int ServiceId { get; set; }
     public bool IsAvailable { get; set; }
     public bool IsSpecial { get; set; }
-    public List<OperatingHourDto> DaysOffered { get; set; }
+    public List<OperatingHourDto>? DaysOffered { get; set; }
 }

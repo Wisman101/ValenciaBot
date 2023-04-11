@@ -9,6 +9,7 @@ using dotenv.net;
 using ValenciaBot.Data.Enum;
 using CSharpFunctionalExtensions;
 using static ChatFunctions;
+using ValenciaBot.Data.Dto;
 //using ValenciaBot.HelperFunctions.ChatFunctions;
 
 namespace ValenciaBot.Controllers.Clinics;
@@ -62,6 +63,7 @@ public class ChatBotController : ControllerBase
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, message.Response));
+                await _context.SaveChangesAsync(cancellationToken);
                 return NoContent();
             }
         }
@@ -116,16 +118,48 @@ public class ChatBotController : ControllerBase
                         double latitude = requestContent["latitute"].Value<double>();
                         double longitude = requestContent["longitude"].Value<double>();
                         List<Model> clinics = await ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
-                        var message = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
-                        response = $"{message.Response}";
+                        var NearestClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
+                        response = $"{NearestClinicMessage.Response}";
                         var count = 1;
                         foreach(var clinic in clinics)
                         {
-                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\nDirection: {GetPinLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\nDirection: {GetDirectionLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
                             count ++;
                         }
+                        var response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
 
-                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
+                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response));
+                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response1));
+                        break;
+                    case Key.NearestClinic:
+                        var EQAclinic = await  _context.Clinics
+                            .Include(clinic => clinic.OperatingHour)
+                            .FirstOrDefaultAsync(clinic => clinic.Code == requestContent["content"].ToString());
+                        if(EQAclinic is null)
+                        {
+                            NearestClinicMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.NearestClinic);
+                            response = $"Clinic with code {requestContent["content"].ToString()} Not found. Kindly reply with correct clinic code\n\n00: Home";
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response));
+                        }
+                        else
+                        {
+                            var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                            response = 
+@$"*{EQAclinic.Name}*
+--------------------------------
+*Location:* {EQAclinic.LocationDescription}
+*Pin:* {GetPinLocationUrl(EQAclinic.Latitude,EQAclinic.Longitude)}
+*Tel:* {EQAclinic.Tel}
+*Email:* {EQAclinic.Email}
+
+*Operating Hours*{GetOperatingHours(_mapper.Map<List<OperatingHourDto>>(EQAclinic.OperatingHour))}
+
+{GetServicesAvailable(EQAclinic, _context, _mapper)}
+                            
+00: Home";
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, ClinicDetailsMessage, response));
+                        }
+                        
                         break;
                     default:
                         return BadRequest();
@@ -137,11 +171,53 @@ public class ChatBotController : ControllerBase
         return Ok(response);
     }
 
-    public static string GetPinLocationUrl(double originLatitude, double originLongitude, double latitude, double longitude)
+
+    public static string GetServicesAvailable(Clinic clinic, MainContext _context, IMapper _mapper)
+    {
+        var servicesString = "";
+        var specialServiceString = "";
+        var services = _context.ClinicServices
+            .Include(service => service.DaysOffered)
+            .Include(service => service.Service)
+            .Where(service => service.IsActive && !service.IsDeleted && service.IsAvailable);
+        foreach(var service in services)
+        {
+            if(service.IsSpecial)
+            {
+                specialServiceString += $"\n{service.Service.Name} {GetOperatingHours(_mapper.Map<List<OperatingHourDto>>(service.DaysOffered))}";
+            }
+            else
+            {
+                servicesString += $"\n{service.Service.Name}";
+            }
+        }
+
+        return $"*Services Available*{servicesString}\n\n*Special Services*{specialServiceString}";
+    }
+    public static string GetOperatingHours(List<OperatingHourDto> OperatingHours)
+    {
+        var opHours = "";
+        foreach(var operatingHour in OperatingHours)
+        {
+            opHours += $"\n{operatingHour.DaysDescription} {operatingHour.Start} - {operatingHour.End}";
+        }
+        return opHours;
+    }
+
+    public static string GetDirectionLocationUrl(double originLatitude, double originLongitude, double latitude, double longitude)
     {
         var url = new UriBuilder("https://www.google.com/maps/dir/")
         {
             Query = $"api=1&origin={originLatitude},{originLongitude}&destination={latitude},{longitude}"
+        };
+        return url.ToString();
+    }
+
+    public static string GetPinLocationUrl(double latitude, double longitude)
+    {
+        var url = new UriBuilder("https://www.google.com/maps/search/")
+        {
+            Query = $"api=1&query={latitude},{longitude}"
         };
         return url.ToString();
     }

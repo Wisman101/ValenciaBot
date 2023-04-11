@@ -116,7 +116,8 @@ public class ClinicServiceController : ControllerBase
             {
                 Days = JToken.FromObject(OperatingHour.Days),
                 Start = OperatingHour.Start,
-                End = OperatingHour.End
+                End = OperatingHour.End,
+                DaysDescription = OperatingHour.DaysDescription
             });
         }
 

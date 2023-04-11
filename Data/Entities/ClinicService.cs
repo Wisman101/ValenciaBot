@@ -8,5 +8,5 @@ public class ClinicService : BaseEntity
     public Service Service { get; set; }
     public bool IsAvailable { get; set; }
     public bool IsSpecial { get; set; }
-    public List<ServiceOperatingHour> DaysOffered { get; set; }
+    public List<ServiceOperatingHour>? DaysOffered { get; set; }
 }
