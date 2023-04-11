@@ -777,6 +777,7 @@
               "Fri",
               "Sat"
             ],
+            "DaysDescription":"Mon-Sat",
             "Start": "09:00:00",
             "End": "19:00:00"
           },
@@ -784,6 +785,7 @@
             "Days": [
               "Sun"
             ],
+            "DaysDescription":"Sun & Public Holidays",
             "Start": "10:00:00",
             "End": "18:00:00"
           }
