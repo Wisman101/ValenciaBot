@@ -8,6 +8,7 @@ using ValenciaBot.HelperFunctions.Clickatell;
 using dotenv.net;
 using ValenciaBot.Data.Enum;
 using CSharpFunctionalExtensions;
+using static ChatFunctions;
 //using ValenciaBot.HelperFunctions.ChatFunctions;
 
 namespace ValenciaBot.Controllers.Clinics;
@@ -95,15 +96,36 @@ public class ChatBotController : ControllerBase
                 {
                     await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
                 }
+                else
+                {
+                    switch(message.Key)
+                    {
+                        case Key.CurrentLocation:
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
             else
             {
                 switch(messageSetup.Key)
                 {
                     case Key.CurrentLocation:
-                        var latitude = requestContent["latitute"].ToString();
-                        var longitude = requestContent["longitude"].ToString();
-                       // ChatFunctions.NearestClinics(latitude, longitude);
+                        double latitude = requestContent["latitute"].Value<double>();
+                        double longitude = requestContent["longitude"].Value<double>();
+                        List<Model> clinics = await ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
+                        var message = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
+                        response = $"{message.Response}";
+                        var count = 1;
+                        foreach(var clinic in clinics)
+                        {
+                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\nDirection: {GetPinLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                            count ++;
+                        }
+
+                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response));
                         break;
                     default:
                         return BadRequest();
@@ -112,7 +134,16 @@ public class ChatBotController : ControllerBase
         }
         await _context.SaveChangesAsync(cancellationToken);
 
-        return NoContent();
+        return Ok(response);
+    }
+
+    public static string GetPinLocationUrl(double originLatitude, double originLongitude, double latitude, double longitude)
+    {
+        var url = new UriBuilder("https://www.google.com/maps/dir/")
+        {
+            Query = $"api=1&origin={originLatitude},{originLongitude}&destination={latitude},{longitude}"
+        };
+        return url.ToString();
     }
     public static Conversation CreateConversation(Client client, JToken data, MessageSetup message, string response)
     {
@@ -121,7 +152,7 @@ public class ChatBotController : ControllerBase
             MetaData = JToken.FromObject(data),
             client = client,
             MessageSetup = message,
-            Input =  data["content"].ToString(),
+            Input = message.Key == Key.NearestClinic ? "Shared Current Location Refer metadata" : data["content"].ToString(),
             Response = response,
             CreatedBy = "System"
         };

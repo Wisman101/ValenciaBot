@@ -1,0 +1,27 @@
+[
+    {
+        "Name" : "Equity Afia Kawangware",
+        "Code" : "EQA001",
+        "County" : "Nairobi",
+        "SubCounty" : "Kawangware",
+        "Ward" : "Mlango Soko",
+        "Latitude" : "-1.2884095836688976",
+        "Longitude" : "36.74354049673628",
+        "LocationDescription" : "Alingo Plaza Ground and First Floor on Naivasha Road",
+        "Tel" : "0765000004",
+        "WhatsappNumber" : "0765000004",
+        "Email" : "KawangwareReception@equityafia.co.ke",
+        "OperatingHour" : [
+            {
+                "Days": ["Mon","Tue","Wed","Thur","Fri","Sat"],
+                "Start" : "09:00:00",
+                "End" : "19:00:00"
+            },
+            {
+                "Days": ["Sun"],
+                "Start" : "10:00:00",
+                "End" : "18:00:00"
+            }
+        ]
+    }
+]

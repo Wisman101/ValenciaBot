@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using ValenciaBot.Data;
@@ -11,9 +12,11 @@ using ValenciaBot.Data;
 namespace ValenciaBot.Migrations
 {
     [DbContext(typeof(MainContext))]
-    partial class MainContextModelSnapshot : ModelSnapshot
+    [Migration("20230411035534_UpdateClinicModel")]
+    partial class UpdateClinicModel
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -110,13 +113,6 @@ namespace ValenciaBot.Migrations
                     b.Property<double>("Latitude")
                         .HasColumnType("double precision");
 
-                    b.Property<string>("LocationDescription")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<double>("Longitude")
-                        .HasColumnType("double precision");
-
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
@@ -130,10 +126,6 @@ namespace ValenciaBot.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("Ward")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("WhatsappNumber")
                         .IsRequired()
                         .HasColumnType("text");
 

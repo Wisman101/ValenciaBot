@@ -38,7 +38,7 @@
                                 "Id": 5,
                                 "isActive": true,
                                 "Input": "current location",
-                                "Response":"Clinics Near the current location",
+                                "Response":"Clinics Near you are:\n",
                                 "createdBy": "System",
                                 "isDynamic": true,
                                 "Key": 5,

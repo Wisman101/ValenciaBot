@@ -1,3 +1,4 @@
+using AutoMapper;
 using Microsoft.AspNetCore.Cors;
 
 namespace ValenciaBot.Startup;

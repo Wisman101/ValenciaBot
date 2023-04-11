@@ -55,11 +55,13 @@ public class ClinicController : ControllerBase
         clinic.County = ClinicDto.County;
         clinic.SubCounty = ClinicDto.SubCounty;
         clinic.Ward = ClinicDto.Ward;
-        clinic.Lattitude = ClinicDto.Lattitude;
+        clinic.Latitude = ClinicDto.Latitude;
         clinic.Longitude = ClinicDto.Longitude;
         clinic.Tel = ClinicDto.Tel;
         clinic.Email = ClinicDto.Email;
         clinic.IsActive = ClinicDto.IsActive;
+        clinic.LocationDescription = ClinicDto.LocationDescription;
+        clinic.WhatsappNumber = ClinicDto.WhatsappNumber;
         clinic.OperatingHour = _mapper.Map<List<ClinicOperatingHour>>(ClinicDto.OperatingHour);
 
         _context.Entry(clinic).State = EntityState.Modified;
@@ -93,10 +95,12 @@ public class ClinicController : ControllerBase
         Clinic.County = ClinicDto.County;
         Clinic.SubCounty = ClinicDto.SubCounty;
         Clinic.Ward = ClinicDto.Ward;
-        Clinic.Lattitude = ClinicDto.Lattitude;
+        Clinic.Latitude = ClinicDto.Latitude;
         Clinic.Longitude = ClinicDto.Longitude;
         Clinic.Tel = ClinicDto.Tel;
         Clinic.Email = ClinicDto.Email;
+        Clinic.LocationDescription = ClinicDto.LocationDescription;
+        Clinic.WhatsappNumber = ClinicDto.WhatsappNumber;
         Clinic.OperatingHour = new ();
 
         foreach(var OperatingHour in ClinicDto.OperatingHour)
