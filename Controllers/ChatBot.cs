@@ -96,14 +96,14 @@ public class ChatBotController : ControllerBase
                 response = $"{message.Response}\n\n00: Home";
                 if(!message.IsDynamic)
                 {
-                    await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId));
+                    await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId, conversation.category));
                 }
                 else
                 {
                     switch(message.Key)
                     {
                         case Key.CurrentLocation:
-                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId));
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId, conversation.category));
                             break;
                         case Key.Services:
                             var services = _context.Services.ToList();
@@ -113,7 +113,7 @@ public class ChatBotController : ControllerBase
                                 response += $"\n{service.Id}: {service.Name}";
                             }
                             response += "\n\n00: Home";
-                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId));
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, message, response, conversation.serviceId, conversation.category));
                             break;
                         default:
                             break;
@@ -148,8 +148,8 @@ public class ChatBotController : ControllerBase
                             response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
                         }
                         
-                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response, conversation.serviceId));
-                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response1, conversation.serviceId));
+                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response, conversation.serviceId, conversation.category));
+                        await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response1, conversation.serviceId, conversation.category));
                         break;
                     case Key.NearestClinic:
                         var EQAclinic = await  _context.Clinics
@@ -159,7 +159,7 @@ public class ChatBotController : ControllerBase
                         {
                             NearestClinicMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.NearestClinic);
                             response = $"Clinic with code {requestContent["content"].ToString()} Not found. Kindly reply with correct clinic code\n\n00: Home";
-                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response, conversation.serviceId));
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response, conversation.serviceId, conversation.category));
                         }
                         else
                         {
@@ -178,13 +178,13 @@ public class ChatBotController : ControllerBase
 
 00: Home";
 
-                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, ClinicDetailsMessage, response, conversation.serviceId));
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, ClinicDetailsMessage, response, conversation.serviceId, conversation.category));
 
                             if(conversation.category == ServiceCategory.Appointment)
                             {
                                 var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
                                 response1 = appointmentDateMessage.Response;
-                                await _context.conversations.AddAsync(CreateConversation(client, requestContent, appointmentDateMessage, response1, conversation.serviceId));
+                                await _context.conversations.AddAsync(CreateConversation(client, requestContent, appointmentDateMessage, response1, conversation.serviceId, conversation.category));
                             }
                            
 
@@ -196,7 +196,7 @@ public class ChatBotController : ControllerBase
                         {
                             var AppointmentClinicMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.SearchByLocation);
                             response = $"Kindly proceed to search for a clinic to schedule the appointment\n\n{AppointmentClinicMessage.Response}";
-                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, AppointmentClinicMessage, response, requestContent["content"].ToString()));
+                            await _context.conversations.AddAsync(CreateConversation(client, requestContent, AppointmentClinicMessage, response, requestContent["content"].ToString(), conversation.category));
                         }
                         break;
                     default:
