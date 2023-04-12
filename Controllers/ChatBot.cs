@@ -136,8 +136,18 @@ public class ChatBotController : ControllerBase
                             response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\nDirection: {GetDirectionLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
                             count ++;
                         }
-                        var response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
 
+                        string response1;
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            response1 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+
+                        }
+                        else
+                        {
+                            response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        }
+                        
                         await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response, conversation.serviceId));
                         await _context.conversations.AddAsync(CreateConversation(client, requestContent, NearestClinicMessage, response1, conversation.serviceId));
                         break;
@@ -165,9 +175,19 @@ public class ChatBotController : ControllerBase
 *Operating Hours*{GetOperatingHours(_mapper.Map<List<OperatingHourDto>>(EQAclinic.OperatingHour))}
 
 {GetServicesAvailable(EQAclinic, _context, _mapper)}
-                            
+
 00: Home";
+
                             await _context.conversations.AddAsync(CreateConversation(client, requestContent, ClinicDetailsMessage, response, conversation.serviceId));
+
+                            if(conversation.category == ServiceCategory.Appointment)
+                            {
+                                var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                                response1 = appointmentDateMessage.Response;
+                                await _context.conversations.AddAsync(CreateConversation(client, requestContent, appointmentDateMessage, response1, conversation.serviceId));
+                            }
+                           
+
                         }
                         
                         break;
