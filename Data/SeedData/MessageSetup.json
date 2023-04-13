@@ -70,7 +70,7 @@
                                 "Id": 14,
                                 "isActive": true,
                                 "Input": "County Name",
-                                "Response":"Clinics In The name",
+                                "Response":"Clinics located in the county",
                                 "isDynamic": true,
                                 "Key": 8,
                                 "createdBy": "System",
@@ -100,11 +100,22 @@
                             {
                                 "Id": 15,
                                 "isActive": true,
-                                "Input": "Clinic code",
-                                "Response":"Clinics Details",
+                                "Input": "Clinic Name or code",
+                                "Response":"Clinics Matching the search term",
                                 "isDynamic": true,
-                                "Key": 6,
-                                "createdBy": "System"
+                                "Key": 18,
+                                "createdBy": "System",
+                                "Children": [
+                                    {
+                                        "Id": 20,
+                                        "isActive": true,
+                                        "Input": "Clinic code",
+                                        "Response":"Clinics Details",
+                                        "isDynamic": true,
+                                        "Key": 6,
+                                        "createdBy": "System"
+                                    }
+                                ]
                             }
                         ]
                     }
@@ -122,7 +133,7 @@
             {
                 "Id": 5,
                 "IsActive": true,
-                "Input": "1",
+                "Input": "Clinic code",
                 "Response":"Kindly Respond with the preferred date for the appointment in the formart MM/DD/YYYY",
                 "isDynamic": true,
                 "key": 11,
@@ -162,7 +173,7 @@
             {
                 "Id": 7,
                 "IsActive": true,
-                "Input": "1",
+                "Input": "Clinic code",
                 "Response":"Kindly select service you want to give feedback for",
                 "isDynamic": true,
                 "key": 3,
@@ -187,7 +198,7 @@
                                 "createdBy": "System",
                                 "Children": [
                                     {
-                                        "Id": 20,
+                                        "Id": 21,
                                         "isActive": true,
                                         "Input": "rating reason",
                                         "Response":"Thank you for sharing your response.",

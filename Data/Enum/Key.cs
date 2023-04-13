@@ -19,4 +19,5 @@ public enum Key
     FeedbackRemarks,
     FeedbackReceived,
     SearchByLocation,
+    ClinicList,
 }

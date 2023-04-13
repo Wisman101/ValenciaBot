@@ -1,6 +1,7 @@
 using AutoMapper;
 using ValenciaBot.Data.Dto;
 using ValenciaBot.Data.Entities;
+using static ChatFunctions;
 
 namespace ValenciaBot.Data.Mappings;
 public class MappingProfile : Profile
@@ -28,5 +29,8 @@ public class MappingProfile : Profile
         CreateMap<MessageSetup, MessageSetupDto>()
             .ForMember(messageDto => messageDto.ParentId, message => message.MapFrom(m => m.Parent.Id));
         CreateMap<MessageSetupDto, MessageSetup>();
+
+        CreateMap<Clinic, Model>()
+            .ForMember(m => m.Clinic, c => c.MapFrom(c => c));
     }
 }

@@ -7,12 +7,9 @@ namespace ValenciaBot.Data.Entities;
 public class Conversation : BaseEntity
 {
     public Client client { get; set; }
-    public MessageSetup MessageSetup { get; set; }
-    public string Input { get; set; }
-    public string Response { get; set; }
-    public JToken MetaData { get; set; }
-    public bool sent { get; set; }
-    public JToken? log { get; set; }
     public ServiceCategory category {get; set;}
-    public string? serviceId { get; set; }
+    public JToken? TransitData { get; set; }
+    public Status status { get; set; }
+    public MessageSetup MessageSetup { get; set; }
+    public List<Messages> Messages { get; set; } = new();
 }
