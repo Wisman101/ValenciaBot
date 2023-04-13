@@ -1728,78 +1728,6 @@
      ]
    },
    {
-     "Name": "Equity Afia Nanyuki",
-     "Code": "EQA0048",
-     "County": "Laikipia",
-     "SubCounty": "Nanyuki ",
-     "ward": "nanyuki",
-     "Latitude": "0.006188",
-     "Longitude": "37.073180",
-     "LocationDescription": "Nanyuki Business Centre, Nyeri-Nanyuki road, opposite Toyota Kenya\n\n",
-     "Tel": "0765 000087",
-     "WhatsappNumber": "0765 000087",
-     "Email": "nanyukireception@equityafia.co.ke",
-     "OperatingHour": [
-       {
-        "Days": [
-           "Mon",
-           "Tue",
-           "Wed",
-           "Thur",
-           "Fri",
-           "Sat"
-         ],
- "DaysDescription":"mon-sat",
-         "Start": "09:00:00",
-         "End": "19:00:00"
-       },
-       {
-         "Days": [
-           "Sun"
-         ],
-         "DaysDescription":"sun and public holidays",
-         "Start": "10:00:00",
-         "End": "18:00:00"
-       }
-     ]
-   },
-   {
-     "Name": "Equity Afia Karatina",
-     "Code": "EQA0048",
-     "County": "Nyeri",
-     "SubCounty": "Karatina",
-     "ward": "karatina town",
-     "Latitude": "-0.422372",
-     "Longitude": "36.953270",
-     "LocationDescription": "Equity Afia Karatina,The trade centre 2nd floor along Railway road\n\n\n\n",
-     "Tel": "0765 000054",
-     "WhatsappNumber": "0765 000054",
-     "Email": "karatinareception@equityafia.co.ke",
-     "OperatingHour": [
-       {
-        "Days": [
-           "Mon",
-           "Tue",
-           "Wed",
-           "Thur",
-           "Fri",
-           "Sat"
-         ],
- "DaysDescription":"mon-sat",
-         "Start": "09:00:00",
-         "End": "19:00:00"
-       },
-       {
-         "Days": [
-           "Sun"
-         ],
-         "DaysDescription":"sun and public holidays",
-         "Start": "10:00:00",
-         "End": "18:00:00"
-       }
-     ]
-   },
-   {
      "Name": "Equity Afia Limuru",
      "Code": "EQA0049",
      "County": "kiambu",
@@ -2698,5 +2626,77 @@
          "End": "18:00:00"
        }
      ]
-   }
+   },
+   {
+    "Name": "Equity Afia Nanyuki",
+    "Code": "EQA0074",
+    "County": "Laikipia",
+    "SubCounty": "Nanyuki ",
+    "ward": "nanyuki",
+    "Latitude": "0.006188",
+    "Longitude": "37.073180",
+    "LocationDescription": "Nanyuki Business Centre, Nyeri-Nanyuki road, opposite Toyota Kenya\n\n",
+    "Tel": "0765 000087",
+    "WhatsappNumber": "0765 000087",
+    "Email": "nanyukireception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+       "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+        "DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  },
+  {
+    "Name": "Equity Afia Karatina",
+    "Code": "EQA0075",
+    "County": "Nyeri",
+    "SubCounty": "Karatina",
+    "ward": "karatina town",
+    "Latitude": "-0.422372",
+    "Longitude": "36.953270",
+    "LocationDescription": "Equity Afia Karatina,The trade centre 2nd floor along Railway road\n\n\n\n",
+    "Tel": "0765 000054",
+    "WhatsappNumber": "0765 000054",
+    "Email": "karatinareception@equityafia.co.ke",
+    "OperatingHour": [
+      {
+       "Days": [
+          "Mon",
+          "Tue",
+          "Wed",
+          "Thur",
+          "Fri",
+          "Sat"
+        ],
+"DaysDescription":"mon-sat",
+        "Start": "09:00:00",
+        "End": "19:00:00"
+      },
+      {
+        "Days": [
+          "Sun"
+        ],
+        "DaysDescription":"sun and public holidays",
+        "Start": "10:00:00",
+        "End": "18:00:00"
+      }
+    ]
+  }
  ]
