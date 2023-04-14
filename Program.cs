@@ -11,7 +11,7 @@ if(builder.Environment.EnvironmentName == "Development")
 }
 else
 {
-     builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
 }
 
 builder.Services.AddDbContext<MainContext>(
