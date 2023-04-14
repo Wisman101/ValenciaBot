@@ -5,14 +5,8 @@ using ValenciaBot.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-if(builder.Environment.EnvironmentName == "Development")
-{
-    builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
-}
-else
-{
-    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-}
+builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+
 
 builder.Services.AddDbContext<MainContext>(
             o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
