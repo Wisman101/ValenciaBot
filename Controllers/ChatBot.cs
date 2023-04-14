@@ -157,6 +157,24 @@ public class ChatBotController : ControllerBase
                         double latitude = requestContent["latitute"].Value<double>();
                         double longitude = requestContent["longitude"].Value<double>();
                         List<Model> clinics = ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
+                        if(clinics.Count() == 1)
+                        {
+                            var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                            response = GetClinicDetails(clinicsx.FirstOrDefault(), _context, _mapper);
+                            _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
+
+                            if(conversation.category == ServiceCategory.Appointment)
+                            {
+                                var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                                response1 = appointmentDateMessage.Response;
+                                _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response1, conversation));
+                            }
+                            else
+                            {
+                                conversation.status = Status.Complete;
+                                _context.conversations.Update(conversation);
+                            }
+                        }
                         var NearestClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
                         response = $"{NearestClinicMessage.Response}";
                         var count = 1;
