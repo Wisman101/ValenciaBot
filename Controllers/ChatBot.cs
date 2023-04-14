@@ -10,6 +10,7 @@ using ValenciaBot.Data.Enum;
 using CSharpFunctionalExtensions;
 using static ChatFunctions;
 using ValenciaBot.Data.Dto;
+using System.Linq;
 //using ValenciaBot.HelperFunctions.ChatFunctions;
 
 namespace ValenciaBot.Controllers.Clinics;
@@ -223,7 +224,8 @@ public class ChatBotController : ControllerBase
                         break;
                      case Key.CountyName:
                         var countyClinics = _context.Clinics
-                            .Where(clinic => !clinic.IsDeleted && clinic.IsActive && clinic.County.Contains(requestContent["content"].ToString()))
+                            .Where(clinic => !clinic.IsDeleted && clinic.IsActive 
+                                && EF.Functions.Like(clinic.County.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%"))
                             .ToList();
                         
                         var clinicModels = _mapper.Map<List<Model>>(countyClinics);
@@ -251,7 +253,7 @@ public class ChatBotController : ControllerBase
                         break;
                     case Key.ClinicName:
                         var clinicsx =  _context.Clinics.Where(clinic => !clinic.IsDeleted && clinic.IsActive && 
-                            (clinic.Code == requestContent["content"].ToString() || clinic.Name.Contains(requestContent["content"].ToString())))
+                            (clinic.Code == requestContent["content"].ToString() || EF.Functions.Like(clinic.Name.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%")))
                         .ToList();
                         
                         clinicModels = _mapper.Map<List<Model>>(clinicsx);
