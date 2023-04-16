@@ -1,4 +1,3 @@
-using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using ValenciaBot.Data;
 using ValenciaBot.Data.SeedData;
@@ -6,7 +5,6 @@ using ValenciaBot.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
-DotEnv.Load();
 if(builder.Environment.EnvironmentName == "Development")
 {
     builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
@@ -16,11 +14,10 @@ if(builder.Environment.EnvironmentName == "Development")
 }
 else
 {
-    builder.Configuration.AddAzureAppConfiguration(options => {
-                    options.Connect(Environment.GetEnvironmentVariable("ConnectionString"));
-                });
+    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+    Console.Write(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"));
     builder.Services.AddDbContext<MainContext>(
-            o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
+            o => o.UseNpgsql(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"))
         );
 }
 
