@@ -15,9 +15,9 @@ if(builder.Environment.EnvironmentName == "Development")
 else
 {
     builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-    Console.Write(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"));
+    Console.Write(builder.Configuration.GetConnectionString("MainContext"));
     builder.Services.AddDbContext<MainContext>(
-            o => o.UseNpgsql(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"))
+            o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
         );
 }
 
