@@ -8,17 +8,17 @@ var builder = WebApplication.CreateBuilder(args);
 if(builder.Environment.EnvironmentName == "Development")
 {
     builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
+    builder.Services.AddDbContext<MainContext>(
+            o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
+        );
 }
 else
 {
     builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
-}
-
-
-
-builder.Services.AddDbContext<MainContext>(
-            o => o.UseNpgsql(builder.Configuration.GetConnectionString("MainContext"))
+    builder.Services.AddDbContext<MainContext>(
+            o => o.UseNpgsql(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"))
         );
+}
 
 builder.Services.RegisterServices();
 
