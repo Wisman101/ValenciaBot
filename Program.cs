@@ -5,6 +5,7 @@ using ValenciaBot.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
+if()
 builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
 
 
