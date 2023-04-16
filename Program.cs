@@ -14,7 +14,10 @@ if(builder.Environment.EnvironmentName == "Development")
 }
 else
 {
-    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
+    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
+          .AddAzureAppConfiguration(options => {
+                    options.Connect(Environment.GetEnvironmentVariable("POSTGRESQLCONNSTR_ConnectionString"));
+                });
     builder.Services.AddDbContext<MainContext>(
             o => o.UseNpgsql(builder.Configuration.GetConnectionString("POSTGRESQLCONNSTR_MainContext"))
         );
