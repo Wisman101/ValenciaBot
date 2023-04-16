@@ -159,8 +159,12 @@ public class ChatBotController : ControllerBase
                         List<Model> clinics = ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
                         if(clinics.Count() == 1)
                         {
-                            var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
-                            var c = await _context.Clinics.FirstOrDefaultAsync(clinic => clinic.Code == clinics.First().Clinic.Code);
+                            var ClinicDetailsMessage = await _context.MessageSetups
+                                .Include(setup => setup.Parent)
+                                .FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                            var c = await _context.Clinics
+                                .Include(clinic => clinic.OperatingHour)
+                                .FirstOrDefaultAsync(clinic => clinic.Code == clinics.First().Clinic.Code);
                             response = GetClinicDetails(c, _context, _mapper);
                             _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
 

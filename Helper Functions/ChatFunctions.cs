@@ -70,7 +70,7 @@ class ChatFunctions
         var services = _context.ClinicServices
             .Include(service => service.DaysOffered)
             .Include(service => service.Service)
-            .Where(service => service.IsActive && !service.IsDeleted && service.IsAvailable);
+            .Where(service => service.IsActive && !service.IsDeleted && service.IsAvailable && service.Clinic == clinic);
         foreach(var service in services)
         {
             if(service.IsSpecial)
@@ -135,7 +135,7 @@ class ChatFunctions
         {
             MetaData = JToken.FromObject(data),
             MessageSetup = messageSetup,
-            Input = messageSetup.Key == Key.NearestClinic ? "Shared Current Location Refer metadata" : data["content"].ToString(),
+            Input = data["content"] == null ? "Shared Current Location Refer metadata" : data["content"].ToString(),
             Response = response,
             CreatedBy = "System"
         };
