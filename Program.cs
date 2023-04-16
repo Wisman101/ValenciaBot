@@ -11,10 +11,7 @@ if(builder.Environment.EnvironmentName == "Development")
 }
 else
 {
-    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true)
-        .AddAzureAppConfiguration(options => {
-                    options.Connect(Environment.GetEnvironmentVariable("ConnectionString"));
-                });
+    builder.Configuration.AddJsonFile($"appsettings.json", optional: true, reloadOnChange: true);
 }
 
 
