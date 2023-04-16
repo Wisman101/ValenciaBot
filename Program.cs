@@ -1,3 +1,4 @@
+using dotenv.net;
 using Microsoft.EntityFrameworkCore;
 using ValenciaBot.Data;
 using ValenciaBot.Data.SeedData;
@@ -5,6 +6,7 @@ using ValenciaBot.Startup;
 
 var builder = WebApplication.CreateBuilder(args);
 
+DotEnv.Load();
 if(builder.Environment.EnvironmentName == "Development")
 {
     builder.Configuration.AddJsonFile($"appsettings.{builder.Environment.EnvironmentName}.json", optional: true, reloadOnChange: true);
