@@ -23,6 +23,9 @@ public class MappingProfile : Profile
         CreateMap<ClinicService, ClinicServiceDto>();
         CreateMap<ClinicServiceDto, ClinicService>();
 
+        CreateMap<Appointment, AppointmentDto>();
+        CreateMap<AppointmentDto, Appointment>();
+
         CreateMap<ClinicService, ClinicServiceDtoPost>();
         CreateMap<ClinicServiceDtoPost, ClinicService>();
 

@@ -13,7 +13,7 @@ using ValenciaBot.Data.Dto;
 using System.Linq;
 //using ValenciaBot.HelperFunctions.ChatFunctions;
 
-namespace ValenciaBot.Controllers.Clinics;
+namespace ValenciaBot.Controllers.Chatbot;
 
 [ApiController]
 [Route("api/[Controller]")]

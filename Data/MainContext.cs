@@ -27,6 +27,6 @@ namespace ValenciaBot.Data
         public DbSet<ServiceOperatingHour> ServiceOperatingHours { get; set; }
         public DbSet<Service> Services { get; set; }
         public DbSet<User> Users { get; set; }
-
+        public DbSet<Appointment> Appointments { get; set; }
     }
 }
