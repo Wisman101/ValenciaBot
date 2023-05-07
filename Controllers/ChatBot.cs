@@ -47,8 +47,8 @@ public class ChatBotController : ControllerBase
         }
 
         var conversation = await _context.conversations
-            .Include(convo => convo.MessageSetup)
-            .FirstOrDefaultAsync(convo => convo.status == Status.Active);
+            .Include(conversation => conversation.MessageSetup)
+            .FirstOrDefaultAsync(conversation => conversation.status == Status.Active && conversation.client == client);
     
         if(request["event"]["moText"] == null)
         {
@@ -60,7 +60,7 @@ public class ChatBotController : ControllerBase
         }
         else
         {
-            if(requestContent["content"].ToString() == "00")
+            if(requestContent["content"].ToString() == "00" && conversation is not null)
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 _context.conversations.Update(CreateMessage(client, requestContent, message, message.Response, conversation));
@@ -94,7 +94,7 @@ public class ChatBotController : ControllerBase
         }
         else if(conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
         {
-             conversation.status = Status.TimedOut;
+            conversation.status = Status.TimedOut;
             _context.conversations.Update(conversation);
 
             var newConversation = new Conversation
@@ -232,7 +232,6 @@ public class ChatBotController : ControllerBase
                             }
                             else
                             {
-                                conversation.status = Status.Complete;
                                 _context.conversations.Update(conversation);
                             }
                         }

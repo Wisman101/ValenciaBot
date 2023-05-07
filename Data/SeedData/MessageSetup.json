@@ -30,7 +30,7 @@
                         "Id": 8,
                         "IsActive": true,
                         "Input": "1",
-                        "Response":"Kindly share Your Current Location so as to get a list of clinics near you.",
+                        "Response":"Kindly share Your Current pin Location so as to get a list of clinics near you.",
                         "createdBy": "System",
                         "isDynamic": true,
                         "Key": 4,
