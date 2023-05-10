@@ -49,224 +49,297 @@ public class ChatBotController : ControllerBase
         var conversation = await _context.conversations
             .Include(conversation => conversation.MessageSetup)
             .FirstOrDefaultAsync(conversation => conversation.status == Status.Active && conversation.client == client);
-    
-        if(request["event"]["moText"] == null)
-        {
-            if(conversation is null || conversation.MessageSetup.Key != Key.CurrentLocation) 
-            {
-                // TODO: code to return message invalid input.
-                return BadRequest();
-            }
-        }
-        else
-        {
-            if(requestContent["content"].ToString() == "00" && conversation is not null)
-            {
-                var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
-                _context.conversations.Update(CreateMessage(client, requestContent, message, message.Response, conversation));
-                await _context.SaveChangesAsync(cancellationToken);
-                return NoContent();
-            }
-        }
-       
-        
+
         var response = "";
-        if(conversation is null || conversation.LastModified < DateTime.UtcNow.AddDays(-1))
+
+        if(conversation is null || conversation.LastModified < DateTime.UtcNow.AddDays(-1) || conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
         {
             if(conversation is not null)
             {
                 conversation.status = Status.TimedOut;
                 _context.conversations.Update(conversation);
             }
-           
-            var newConversation = new Conversation
+
+            conversation = new Conversation
             {
                 client = client,
                 category = ServiceCategory.Intro,
                 status = Status.Active
             };
-            
-            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
-            await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", newConversation));
 
-            var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
-            await _context.conversations.AddAsync(CreateMessage(client, requestContent, message2, message2.Response, newConversation));
-        }
-        else if(conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
-        {
-            conversation.status = Status.TimedOut;
-            _context.conversations.Update(conversation);
-
-            var newConversation = new Conversation
+            if(conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
             {
-                client = client,
-                category = ServiceCategory.Intro,
-                status = Status.Active
-            };
-            var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
-            response = "*Welcome Back!*\n\n" + message.Response;
-            await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, response, newConversation));
-        }
-        else
-        {
-            MessageSetup messageSetup = conversation.MessageSetup;
-            
-            if(!messageSetup.IsDynamic)
-            {
-                var message = await _context.MessageSetups
-                    .FirstOrDefaultAsync(setup => setup.Parent == messageSetup 
-                        && setup.Input == requestContent["content"].ToString());
-                response = $"{message.Response}\n\n00: Home";
-                if(!message.IsDynamic)
-                {
-                    _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
-                }
-                else
-                {
-                    switch(message.Key)
-                    {
-                        case Key.CurrentLocation:
-                            _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
-                            break;
-                        case Key.Services:
-                            var services = _context.Services.ToList();
-                            response = $"{message.Response}";
-                            foreach(var service in services)
-                            {
-                                response += $"\n{service.Id}: {service.Name}";
-                            }
-                            response += "\n\n00: Home";
-                            _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
-                            break;
-                        case Key.CountyName:                        
-                            _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
-                            break;
-                        case Key.ClinicName:
-                            _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
-                            break;
-                        default:
-                            break;
-                    }
-                }
+                var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
+                response = "*Welcome Back!*\n\n" + message.Response;
+                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, response, conversation));
             }
             else
             {
-                switch(messageSetup.Key)
+                var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
+                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
+
+                var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
+                response = message2.Response;
+                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message2, response, conversation));
+            }
+            
+            return Ok(response);
+        }
+    
+        if(request["event"]["moText"] == null && conversation.MessageSetup.Key != Key.CurrentLocation)
+        {
+            response = InvalidInput(requestContent, client, conversation);
+            return Ok(response);
+        }
+        
+        if(requestContent["content"].ToString() == "00")
+        {
+            var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
+            _context.conversations.Update(CreateMessage(client, requestContent, message, message.Response, conversation));
+            await _context.SaveChangesAsync(cancellationToken);
+            return Ok(message.Response);
+        }
+       
+        MessageSetup messageSetup = conversation.MessageSetup;
+        
+        if(!messageSetup.IsDynamic)
+        {
+            var message = await _context.MessageSetups
+                .FirstOrDefaultAsync(setup => setup.Parent == messageSetup 
+                    && setup.Input == requestContent["content"].ToString());
+            
+            if(message is null)
+            {
+                response = InvalidInput(requestContent, client, conversation);
+                return Ok(response);
+            }
+
+            response = $"{message.Response}\n\n00: Home";
+            if(!message.IsDynamic)
+            {
+                _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
+            }
+            else
+            {
+                switch(message.Key)
                 {
                     case Key.CurrentLocation:
-                        double latitude = requestContent["latitute"].Value<double>();
-                        double longitude = requestContent["longitude"].Value<double>();
-                        List<Model> clinics = ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
-                        if(clinics.Count() == 1)
-                        {
-                            var ClinicDetailsMessage = await _context.MessageSetups
-                                .Include(setup => setup.Parent)
-                                .FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
-                            var c = await _context.Clinics
-                                .Include(clinic => clinic.OperatingHour)
-                                .FirstOrDefaultAsync(clinic => clinic.Code == clinics.First().Clinic.Code);
-                            response = GetClinicDetails(c, _context, _mapper);
-                            _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
-
-                            if(conversation.category == ServiceCategory.Appointment)
-                            {
-                                var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
-                                var res = appointmentDateMessage.Response;
-                                _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, res, conversation));
-                            }
-                            else
-                            {
-                                conversation.status = Status.Complete;
-                                _context.conversations.Update(conversation);
-                            }
-                        }
-                        else
-                        {
-                            var NearestClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
-                            response = $"{NearestClinicMessage.Response}";
-                            var countx = 1;
-                            foreach(var clinic in clinics)
-                            {
-                                response += $"{countx}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\n*Direction:* {GetDirectionLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
-                                countx ++;
-                            }
-
-                            string response1;
-                            if(conversation.category == ServiceCategory.Appointment)
-                            {
-                                response1 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
-                            }
-                            else
-                            {
-                                response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
-                            }
-                            
-                            _context.conversations.Update(CreateMessage(client, requestContent, NearestClinicMessage, response, conversation));
-                            _context.conversations.Update(CreateMessage(client, requestContent, NearestClinicMessage, response1, conversation));
-                        }
-                        break;
-                    case Key.NearestClinic:
-                    case Key.CountyClinics:
-                    case Key.ClinicList:
-                        var EQAclinic = await  _context.Clinics
-                            .Include(clinic => clinic.OperatingHour)
-                            .FirstOrDefaultAsync(clinic => clinic.Code == requestContent["content"].ToString());
-                        if(EQAclinic is null)
-                        {
-                            response = $"Clinic with code {requestContent["content"].ToString()} Not found. Kindly reply with correct clinic code\n\n00: Home";
-                            _context.conversations.Update(CreateMessage(client, requestContent, messageSetup, response, conversation));
-                        }
-                        else
-                        {
-                            var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
-                            response = GetClinicDetails(EQAclinic, _context, _mapper);
-
-                            _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
-
-                            string response1;
-                            if(conversation.category == ServiceCategory.Appointment)
-                            {
-                                var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
-                                response1 = appointmentDateMessage.Response;
-                                _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response1, conversation));
-                            }
-                            else
-                            {
-                                _context.conversations.Update(conversation);
-                            }
-                        }
+                        _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
                         break;
                     case Key.Services:
+                        var services = _context.Services.ToList();
+                        response = $"{message.Response}";
+                        foreach(var service in services)
+                        {
+                            response += $"\n{service.Id}: {service.Name}";
+                        }
+                        response += "\n\n00: Home";
+                        _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
+                        break;
+                    case Key.CountyName:                        
+                        _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
+                        break;
+                    case Key.ClinicName:
+                        _context.conversations.Update(CreateMessage(client, requestContent, message, response, conversation));
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+        else
+        {
+            switch(messageSetup.Key)
+            {
+                case Key.CurrentLocation:
+                    if(requestContent["latitute"] is null || requestContent["longitude"] is null)
+                    {
+                        response = "Invalid Input! Kindly respond with your current pin location\n\n00. Home";
+                        response = InvalidInput(requestContent, client, conversation, response);
+                        return Ok(response);
+                    }
+
+                    double latitude = requestContent["latitute"].Value<double>();
+                    double longitude = requestContent["longitude"].Value<double>();
+                    List<Model> clinics = ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
+                    if(clinics.Count() == 1)
+                    {
+                        var ClinicDetailsMessage = await _context.MessageSetups
+                            .Include(setup => setup.Parent)
+                            .FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                        var c = await _context.Clinics
+                            .Include(clinic => clinic.OperatingHour)
+                            .FirstOrDefaultAsync(clinic => clinic.Code == clinics.First().Clinic.Code);
+                        response = GetClinicDetails(c, _context, _mapper);
+                        _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
+
                         if(conversation.category == ServiceCategory.Appointment)
                         {
-                            conversation.TransitData = JToken.FromObject(new
-                            {
-                                serviceId = requestContent["content"]
-                            });
-                            var AppointmentClinicMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.SearchByLocation);
-                            response = $"Kindly proceed to search for a clinic to schedule the appointment\n\n{AppointmentClinicMessage.Response}";
-                            _context.conversations.Update(CreateMessage(client, requestContent, AppointmentClinicMessage, response, conversation));
+                            var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                            var res = appointmentDateMessage.Response;
+                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, res, conversation));
                         }
-                        break;
-                     case Key.CountyName:
-                        var countyClinics = _context.Clinics
-                            .Where(clinic => !clinic.IsDeleted && clinic.IsActive 
-                                && EF.Functions.Like(clinic.County.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%"))
-                            .ToList();
+                        else
+                        {
+                            _context.conversations.Update(conversation);
+                        }
+                    }
+                    else
+                    {
+                        var NearestClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.NearestClinic);
+                        response = $"{NearestClinicMessage.Response}";
+                        var countx = 1;
+                        foreach(var clinic in clinics)
+                        {
+                            response += $"{countx}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\n*Direction:* {GetDirectionLocationUrl(latitude, longitude, clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                            countx ++;
+                        }
+
+                        string response1;
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            response1 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        }
+                        else
+                        {
+                            response1 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        }
                         
-                        var clinicModels = _mapper.Map<List<Model>>(countyClinics);
-                        
-                        var countyClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.CountyClinics);
-                        response = $"{countyClinicMessage.Response} matching to *{requestContent["content"].ToString()}* are:\n";
-                        var count = 1;
+                        _context.conversations.Update(CreateMessage(client, requestContent, NearestClinicMessage, response, conversation));
+                        _context.conversations.Update(CreateMessage(client, requestContent, NearestClinicMessage, response1, conversation));
+                    }
+                    break;
+                case Key.NearestClinic:
+                case Key.CountyClinics:
+                case Key.ClinicList:
+                    var EQAclinic = await  _context.Clinics
+                        .Include(clinic => clinic.OperatingHour)
+                        .FirstOrDefaultAsync(clinic => clinic.Code == requestContent["content"].ToString());
+                    if(EQAclinic is null)
+                    {
+                        response = $"Clinic with code {requestContent["content"].ToString()} Not found. Kindly reply with correct clinic code\n\n00: Home";
+                        _context.conversations.Update(CreateMessage(client, requestContent, messageSetup, response, conversation));
+                    }
+                    else
+                    {
+                        var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                        response = GetClinicDetails(EQAclinic, _context, _mapper);
+
+                        _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
+
+                        string response1;
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                            response1 = appointmentDateMessage.Response;
+                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response1, conversation));
+                        }
+                        else
+                        {
+                            _context.conversations.Update(conversation);
+                        }
+                    }
+                    break;
+                case Key.Services:
+                    if(conversation.category == ServiceCategory.Appointment)
+                    {
+                        var service = await _context.Services.FindAsync(requestContent["content"].ToString());
+                        if(service is null)
+                        {
+                            response = "Invalid Input! Kindly respond with a service number in the service list above\n\n00. Home";
+                            response = InvalidInput(requestContent, client, conversation, response);
+                            return Ok(response);
+                        }
+
+                        conversation.TransitData = JToken.FromObject(new
+                        {
+                            serviceId = requestContent["content"].ToString()
+                        });
+                        var AppointmentClinicMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.SearchByLocation);
+                        response = $"Kindly proceed to search for a clinic to schedule the appointment\n\n{AppointmentClinicMessage.Response}";
+                        _context.conversations.Update(CreateMessage(client, requestContent, AppointmentClinicMessage, response, conversation));
+                    }
+                    break;
+                    case Key.CountyName:
+                    var countyClinics = _context.Clinics
+                        .Where(clinic => !clinic.IsDeleted && clinic.IsActive 
+                            && EF.Functions.Like(clinic.County.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%"))
+                        .ToList();
+
+                    if(countyClinics is null)
+                    {
+                        response = "No clinic found in the given county, Try another county name\n\n00. Home";
+                        response = InvalidInput(requestContent, client, conversation, response);
+                        return Ok(response);
+                    }
+                    
+                    var clinicModels = _mapper.Map<List<Model>>(countyClinics);
+                    
+                    var countyClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.CountyClinics);
+                    response = $"{countyClinicMessage.Response} matching to *{requestContent["content"].ToString()}* are:\n";
+                    var count = 1;
+                    foreach(var clinic in clinicModels)
+                    {
+                        response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} *Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                        count ++;
+                    }
+                    
+                    string response2;
+                    _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response, conversation));
+                    if(conversation.category == ServiceCategory.Appointment)
+                    {
+                        response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                    }
+                    else
+                    {
+                        response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                    }
+                
+                    _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response2, conversation));
+                    break;
+                case Key.ClinicName:
+                    var clinicsx =  _context.Clinics.Where(clinic => !clinic.IsDeleted && clinic.IsActive && 
+                        (clinic.Code == requestContent["content"].ToString() || EF.Functions.Like(clinic.Name.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%")))
+                    .ToList();
+
+                    if(clinicsx is null)
+                    {
+                        response = "Clinic with the given name or code not found! try another name or code\n\n00. Home";
+                        response = InvalidInput(requestContent, client, conversation, response);
+                        return Ok(response);
+                    }
+                    
+                    clinicModels = _mapper.Map<List<Model>>(clinicsx);
+
+                    if(clinicsx.Count() == 1)
+                    {
+                        var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                        response = GetClinicDetails(clinicsx.FirstOrDefault(), _context, _mapper);
+                        _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
+
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                            response2 = appointmentDateMessage.Response;
+                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response2, conversation));
+                        }
+                        else
+                        {
+                            conversation.status = Status.Complete;
+                            _context.conversations.Update(conversation);
+                        }
+                    }
+                    else
+                    {
+                        var clinicNameMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.ClinicList);
+                        response = $"{clinicNameMessage.Response} *{requestContent["content"].ToString()}* are:\n";
+                        count = 1;
                         foreach(var clinic in clinicModels)
                         {
-                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} *Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\n*Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
                             count ++;
                         }
-                        
-                        string response2;
-                        _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response, conversation));
+
                         if(conversation.category == ServiceCategory.Appointment)
                         {
                             response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
@@ -275,63 +348,16 @@ public class ChatBotController : ControllerBase
                         {
                             response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
                         }
-                    
-                        _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response2, conversation));
-                        break;
-                    case Key.ClinicName:
-                        var clinicsx =  _context.Clinics.Where(clinic => !clinic.IsDeleted && clinic.IsActive && 
-                            (clinic.Code == requestContent["content"].ToString() || EF.Functions.Like(clinic.Name.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%")))
-                        .ToList();
                         
-                        clinicModels = _mapper.Map<List<Model>>(clinicsx);
-
-                        if(clinicsx.Count() == 1)
-                        {
-                            var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
-                            response = GetClinicDetails(clinicsx.FirstOrDefault(), _context, _mapper);
-                            _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
-
-                            if(conversation.category == ServiceCategory.Appointment)
-                            {
-                                var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
-                                response2 = appointmentDateMessage.Response;
-                                _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response2, conversation));
-                            }
-                            else
-                            {
-                                conversation.status = Status.Complete;
-                                _context.conversations.Update(conversation);
-                            }
-                        }
-                        else
-                        {
-                            var clinicNameMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.ClinicList);
-                            response = $"{clinicNameMessage.Response} *{requestContent["content"].ToString()}* are:\n";
-                            count = 1;
-                            foreach(var clinic in clinicModels)
-                            {
-                                response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\n*Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
-                                count ++;
-                            }
-
-                            if(conversation.category == ServiceCategory.Appointment)
-                            {
-                                response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
-                            }
-                            else
-                            {
-                                response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
-                            }
-                            
-                            _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response, conversation));
-                            _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response2, conversation));
-                        }
-                        break;
-                    default:
-                        return BadRequest();
-                }
+                        _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response, conversation));
+                        _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response2, conversation));
+                    }
+                    break;
+                default:
+                    return BadRequest();
             }
         }
+        
         await _context.SaveChangesAsync(cancellationToken);
 
         return Ok(response);

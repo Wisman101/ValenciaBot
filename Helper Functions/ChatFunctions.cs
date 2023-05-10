@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using AutoMapper;
+using CSharpFunctionalExtensions;
 using Geolocation;
 using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json.Linq;
@@ -150,4 +151,10 @@ class ChatFunctions
         return conversation;
     }
 
+    public static string InvalidInput(JToken data, Client client, Conversation conversation, string response = null)
+    {
+        response =  response ?? "Invalid Input! Kindly respond with a valid input\n\n00. Home";
+        CreateMessage(client, data, conversation.MessageSetup, response, conversation);
+        return response;
+    }
 }
