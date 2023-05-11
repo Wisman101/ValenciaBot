@@ -82,6 +82,7 @@ public class ChatBotController : ControllerBase
                 response = message2.Response;
                 await _context.conversations.AddAsync(CreateMessage(client, requestContent, message2, response, conversation));
             }
+            await _context.SaveChangesAsync(cancellationToken);
             
             return Ok(response);
         }
