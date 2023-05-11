@@ -43,7 +43,7 @@ public class ChatBotController : ControllerBase
             client.PhoneNumber = PhoneNumber;
             client.CreatedBy = "System";
             client.Name = profileName;
-            await _context.Clients.AddAsync(client);
+            _context.Clients.AddAsync(client);
         }
 
         var conversation = await _context.conversations
@@ -79,11 +79,11 @@ public class ChatBotController : ControllerBase
             else
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
-                await _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
+                _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
 
                 var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 response = message2.Response;
-                await _context.conversations.Update(CreateMessage(client, requestContent, message2, response, conversation));
+                _context.conversations.Update(CreateMessage(client, requestContent, message2, response, conversation));
                 await _context.SaveChangesAsync(cancellationToken);
             }
             
