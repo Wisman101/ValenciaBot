@@ -151,9 +151,10 @@ class ChatFunctions
         return conversation;
     }
 
-    public static Conversation InvalidInput(JToken data, Client client, Conversation conversation, string response = null)
+    public static string InvalidInput(JToken data, Client client, Conversation conversation, string response = null)
     {
         response =  response ?? "Invalid Input! Kindly respond with a valid input\n\n00. Home";
-        return CreateMessage(client, data, conversation.MessageSetup, response, conversation);
+        CreateMessage(client, data, conversation.MessageSetup, response, conversation);
+        return response;
     }
 }
