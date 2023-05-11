@@ -58,6 +58,7 @@ public class ChatBotController : ControllerBase
             {
                 conversation.status = Status.TimedOut;
                 _context.conversations.Update(conversation);
+                await _context.SaveChangesAsync(cancellationToken);
             }
 
             conversation = new Conversation
@@ -71,18 +72,20 @@ public class ChatBotController : ControllerBase
             {
                 var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
                 response = "*Welcome Back!*\n\n" + message.Response;
-                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, response, conversation));
+                conversation = CreateMessage(client, requestContent, message, response, conversation);
+                _context.conversations.Update(conversation);
+                await _context.SaveChangesAsync(cancellationToken);
             }
             else
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
-                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
+                await _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
 
                 var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 response = message2.Response;
-                await _context.conversations.AddAsync(CreateMessage(client, requestContent, message2, response, conversation));
+                await _context.conversations.Update(CreateMessage(client, requestContent, message2, response, conversation));
+                await _context.SaveChangesAsync(cancellationToken);
             }
-            await _context.SaveChangesAsync(cancellationToken);
             
             return Ok(response);
         }
