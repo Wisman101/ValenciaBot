@@ -67,9 +67,8 @@ public class ChatBotController : ControllerBase
                 category = ServiceCategory.Intro,
                 status = Status.Active
             };
-            await _context.AddAsync(newConversation);
 
-            if(conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
+            if(conversation is not null && conversation.LastModified < DateTime.UtcNow.AddMinutes(-10) && conversation.LastModified > DateTime.UtcNow.AddDays(-1))
             {
                 var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
                 response = "*Welcome Back!*\n\n" + message.Response;
@@ -80,6 +79,7 @@ public class ChatBotController : ControllerBase
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
                 _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", newConversation));
+                await _context.SaveChangesAsync(cancellationToken);
 
                 var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 response = message2.Response;
