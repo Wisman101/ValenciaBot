@@ -96,7 +96,7 @@ public class ChatBotController : ControllerBase
             return Ok(response);
         }
         
-        if(requestContent["content"].ToString() == "00")
+        if(requestContent["content"]?.ToString() == "00")
         {
             var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
             _context.conversations.Update(CreateMessage(client, requestContent, message, message.Response, conversation));
