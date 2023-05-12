@@ -61,7 +61,7 @@ public class ChatBotController : ControllerBase
                 await _context.SaveChangesAsync(cancellationToken);
             }
 
-            newConversation = new Conversation
+            var newConversation = new Conversation
             {
                 client = client,
                 category = ServiceCategory.Intro,
