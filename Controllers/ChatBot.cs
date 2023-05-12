@@ -270,7 +270,7 @@ public class ChatBotController : ControllerBase
                             && EF.Functions.Like(clinic.County.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%"))
                         .ToList();
 
-                    if(countyClinics is null)
+                    if(countyClinics.Count() == 0)
                     {
                         response = "No clinic found in the given county, Try another county name\n\n00. Home";
                         response = InvalidInput(requestContent, client, conversation, response);
