@@ -61,29 +61,29 @@ public class ChatBotController : ControllerBase
                 await _context.SaveChangesAsync(cancellationToken);
             }
 
-            conversation = new Conversation
+            newConversation = new Conversation
             {
                 client = client,
                 category = ServiceCategory.Intro,
                 status = Status.Active
             };
+            await _context.AddAsync(newConversation);
 
             if(conversation.LastModified < DateTime.UtcNow.AddMinutes(-10))
             {
                 var message = _context.MessageSetups.FirstOrDefault(message => message.Key == Key.Begin);
                 response = "*Welcome Back!*\n\n" + message.Response;
-                conversation = CreateMessage(client, requestContent, message, response, conversation);
-                _context.conversations.Update(conversation);
+                _context.conversations.Update(CreateMessage(client, requestContent, message, response, newConversation));
                 await _context.SaveChangesAsync(cancellationToken);
             }
             else
             {
                 var message = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Intro && !message.IsDeleted);
-                _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", conversation));
+                _context.conversations.Update(CreateMessage(client, requestContent, message, $"Hey {client.Name},\n {message.Response}", newConversation));
 
                 var message2 = await _context.MessageSetups.FirstOrDefaultAsync(message => message.Key == Key.Begin && !message.IsDeleted);
                 response = message2.Response;
-                _context.conversations.Update(CreateMessage(client, requestContent, message2, response, conversation));
+                _context.conversations.Update(CreateMessage(client, requestContent, message2, response, newConversation));
                 await _context.SaveChangesAsync(cancellationToken);
             }
             
