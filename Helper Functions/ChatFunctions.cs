@@ -50,7 +50,7 @@ class ChatFunctions
     public static string GetClinicDetails(Clinic clinic, MainContext _context, IMapper _mapper)
     {
         var response = 
-@$"*{clinic.Name}*
+@$"*{clinic.Name}({clinic.Code})*
 --------------------------------
 *Location:* {clinic.LocationDescription}
 *Pin:* {GetPinLocationUrl(clinic.Latitude,clinic.Longitude)}
@@ -72,6 +72,8 @@ class ChatFunctions
             .Include(service => service.DaysOffered)
             .Include(service => service.Service)
             .Where(service => service.IsActive && !service.IsDeleted && service.IsAvailable && service.Clinic == clinic);
+
+        if(services.Count() == 0)  return $"*No services available currently*";
         foreach(var service in services)
         {
             if(service.IsSpecial)
@@ -83,8 +85,17 @@ class ChatFunctions
                 servicesString += $"\n{service.Service.Name}";
             }
         }
-
-        return $"*Services Available*{servicesString}\n\n*Special Services*{specialServiceString}";
+        
+        var servicesOffered = "";
+        if(!string.IsNullOrWhiteSpace(servicesString))
+        {
+            servicesOffered += $"*Services Available*{servicesString}\n";
+        }
+        if(!string.IsNullOrWhiteSpace(specialServiceString))
+        {
+            servicesOffered += $"*Special Services*{specialServiceString}\n";
+        }
+        return servicesOffered;
     }
     public static string GetOperatingHours(List<OperatingHourDto> OperatingHours)
     {

@@ -31,7 +31,7 @@ public class ChatBotController : ControllerBase
     public async Task<IActionResult> ReceiveMessage([FromBody] JObject request, CancellationToken cancellationToken)
     {
         var contentType = request["event"]["moText"] == null ? request["event"]["moLocation"] : request["event"]["moText"];
-        if(contentType == null) return BadRequest();
+        if(contentType == null) return Ok("Invalid reply object sent");
 
         var requestContent = contentType[0];
         var PhoneNumber = requestContent["from"].ToString();
@@ -43,7 +43,7 @@ public class ChatBotController : ControllerBase
             client.PhoneNumber = PhoneNumber;
             client.CreatedBy = "System";
             client.Name = profileName;
-            _context.Clients.AddAsync(client);
+            await _context.Clients.AddAsync(client);
         }
 
         var conversation = await _context.conversations
@@ -166,6 +166,10 @@ public class ChatBotController : ControllerBase
                     double latitude = requestContent["latitute"].Value<double>();
                     double longitude = requestContent["longitude"].Value<double>();
                     List<Model> clinics = ChatFunctions.NearestClinics(latitude, longitude, _context, _mapper);
+                    // if(conversation.category == ServiceCategory.Appointment)
+                    // {
+                    //     clinics = clinics.Where(clinic => clinic.Clinic.se)
+                    // }
                     if(clinics.Count() == 1)
                     {
                         var ClinicDetailsMessage = await _context.MessageSetups
@@ -185,6 +189,7 @@ public class ChatBotController : ControllerBase
                         }
                         else
                         {
+                            conversation.status = Status.Complete;
                             _context.conversations.Update(conversation);
                         }
                     }
@@ -240,6 +245,7 @@ public class ChatBotController : ControllerBase
                         }
                         else
                         {
+                            conversation.status = Status.Complete;
                             _context.conversations.Update(conversation);
                         }
                     }
@@ -247,7 +253,9 @@ public class ChatBotController : ControllerBase
                 case Key.Services:
                     if(conversation.category == ServiceCategory.Appointment)
                     {
-                        var service = await _context.Services.FindAsync(requestContent["content"].ToString());
+                        int serviceId;
+                        bool result = int.TryParse(requestContent["content"].ToString(), out serviceId);
+                        var service = result ? await _context.Services.FindAsync(serviceId) : null;
                         if(service is null)
                         {
                             response = "Invalid Input! Kindly respond with a service number in the service list above\n\n00. Home";
@@ -266,6 +274,7 @@ public class ChatBotController : ControllerBase
                     break;
                     case Key.CountyName:
                     var countyClinics = _context.Clinics
+                        .Include(clinic => clinic.OperatingHour)
                         .Where(clinic => !clinic.IsDeleted && clinic.IsActive 
                             && EF.Functions.Like(clinic.County.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%"))
                         .ToList();
@@ -276,34 +285,56 @@ public class ChatBotController : ControllerBase
                         response = InvalidInput(requestContent, client, conversation, response);
                         return Ok(response);
                     }
-                    
-                    var clinicModels = _mapper.Map<List<Model>>(countyClinics);
-                    
-                    var countyClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.CountyClinics);
-                    response = $"{countyClinicMessage.Response} matching to *{requestContent["content"].ToString()}* are:\n";
-                    var count = 1;
-                    foreach(var clinic in clinicModels)
+
+                    if(countyClinics.Count() == 1)
                     {
-                        response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} *Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
-                        count ++;
-                    }
-                    
-                    string response2;
-                    _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response, conversation));
-                    if(conversation.category == ServiceCategory.Appointment)
-                    {
-                        response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        var ClinicDetailsMessage = await _context.MessageSetups.FirstOrDefaultAsync(setup => setup.Key == Key.ClinicDetails);
+                        response = $"Clinic Located in the county matching to *{requestContent["content"].ToString()}* is:\n\n{GetClinicDetails(countyClinics.FirstOrDefault(), _context, _mapper)}";
+                        _context.conversations.Update(CreateMessage(client, requestContent, ClinicDetailsMessage, response, conversation));                            
+
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
+                            response = appointmentDateMessage.Response;
+                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response, conversation));
+                        }
+                        else
+                        {
+                            conversation.status = Status.Complete;
+                            _context.conversations.Update(conversation);
+                        }
                     }
                     else
                     {
-                        response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        var clinicModels = _mapper.Map<List<Model>>(countyClinics);
+                        var countyClinicMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.CountyClinics);
+                        response = $"{countyClinicMessage.Response} matching to *{requestContent["content"].ToString()}* are:\n";
+                        var count = 1;
+                        foreach(var clinic in clinicModels)
+                        {
+                            response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} *Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
+                            count ++;
+                        }
+                        
+                        string response2;
+                        _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response, conversation));
+                        if(conversation.category == ServiceCategory.Appointment)
+                        {
+                            response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        }
+                        else
+                        {
+                            response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                        }
+                    
+                        _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response2, conversation));
                     }
-                
-                    _context.conversations.Update(CreateMessage(client, requestContent, countyClinicMessage, response2, conversation));
                     break;
                 case Key.ClinicName:
-                    var clinicsx =  _context.Clinics.Where(clinic => !clinic.IsDeleted && clinic.IsActive && 
-                        (clinic.Code == requestContent["content"].ToString() || EF.Functions.Like(clinic.Name.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%")))
+                    var clinicsx =  _context.Clinics
+                        .Include(clinic => clinic.OperatingHour)
+                        .Where(clinic => !clinic.IsDeleted && clinic.IsActive && 
+                            (clinic.Code == requestContent["content"].ToString() || EF.Functions.Like(clinic.Name.ToLower(), $"%{requestContent["content"].ToString().ToLower()}%")))
                     .ToList();
 
                     if(clinicsx is null)
@@ -312,8 +343,6 @@ public class ChatBotController : ControllerBase
                         response = InvalidInput(requestContent, client, conversation, response);
                         return Ok(response);
                     }
-                    
-                    clinicModels = _mapper.Map<List<Model>>(clinicsx);
 
                     if(clinicsx.Count() == 1)
                     {
@@ -324,8 +353,8 @@ public class ChatBotController : ControllerBase
                         if(conversation.category == ServiceCategory.Appointment)
                         {
                             var appointmentDateMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.AppointmentDate);
-                            response2 = appointmentDateMessage.Response;
-                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response2, conversation));
+                            response = appointmentDateMessage.Response;
+                            _context.conversations.Update(CreateMessage(client, requestContent, appointmentDateMessage, response, conversation));
                         }
                         else
                         {
@@ -335,26 +364,28 @@ public class ChatBotController : ControllerBase
                     }
                     else
                     {
+                        var clinicModels = _mapper.Map<List<Model>>(clinicsx);
                         var clinicNameMessage = _context.MessageSetups.FirstOrDefault(setup => setup.Key == Key.ClinicList);
                         response = $"{clinicNameMessage.Response} *{requestContent["content"].ToString()}* are:\n";
-                        count = 1;
+                        var count = 1;
                         foreach(var clinic in clinicModels)
                         {
                             response += $"{count}. {clinic.Clinic.Code} - {clinic.Clinic.Name} ({clinic.distance}Km)\n*Pin:* {GetPinLocationUrl(clinic.Clinic.Latitude, clinic.Clinic.Longitude)}\n";
                             count ++;
                         }
 
+                        _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response, conversation));
+
                         if(conversation.category == ServiceCategory.Appointment)
                         {
-                            response2 = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                            response = "Kindly select the clinic you would wish to book an appointment from.\n\n Reply with the clinic code e.g 'EQA001'\n\n00: Home";
                         }
                         else
                         {
-                            response2 = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
+                            response = "To Get Clinic Details, Kindly Reply with the clinic code e.g 'EQA001'\n\n00: Home";
                         }
-                        
+                    
                         _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response, conversation));
-                        _context.conversations.Update(CreateMessage(client, requestContent, clinicNameMessage, response2, conversation));
                     }
                     break;
                 default:

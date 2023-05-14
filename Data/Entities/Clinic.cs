@@ -16,4 +16,5 @@ public class Clinic : BaseEntity
     public string WhatsappNumber { get; set; }
     public string Email { get; set; }
     public List<ClinicOperatingHour> OperatingHour { get; set; }
+    public List<ClinicService> Services { get; set; }
 }
